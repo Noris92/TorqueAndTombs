@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="UpgradeResource" format=3]
+
+[ext_resource type="Texture2D" path="res://data/upgrade_icons/grippy_tires.tres" id="1_262ve"]
+[ext_resource type="Script" path="res://scripts/resources/UpgradeResource.gd" id="2_0jsan"]
+
+[resource]
+script = ExtResource("2_0jsan")
+id = "grippy_tires"
+display_name = "Grippy Tires"
+description = "Corner harder with less slide."
+icon = ExtResource("1_262ve")
+category = 3
+target_stat = "grip"
+base_cost = 55
+max_tier = 4

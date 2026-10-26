@@ -1,0 +1,26 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://scripts/enemies/TrainingDummy.gd" id="1_rdcfq"]
+[ext_resource type="PackedScene" path="res://scenes/hazards/ScrapPickup.tscn" id="2_bk4d5"]
+[ext_resource type="PackedScene" path="res://scenes/effects/CrateBreak.tscn" id="3_hdn3a"]
+[ext_resource type="AudioStream" path="res://audio/hit.tres" id="4_pkuk6"]
+[ext_resource type="ArrayMesh" path="res://models/dummy.tres" id="5_a3n40"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_dq4bm"]
+size = Vector3(1.4, 2.4, 0.8)
+
+[node name="TrainingDummy" type="StaticBody3D" unique_id=156621688]
+collision_layer = 4
+collision_mask = 0
+script = ExtResource("1_rdcfq")
+scrap_reward = 2
+scrap_pickup_scene = ExtResource("2_bk4d5")
+destroy_effect = ExtResource("3_hdn3a")
+hit_sound = ExtResource("4_pkuk6")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1806634456]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2, 0)
+shape = SubResource("BoxShape3D_dq4bm")
+
+[node name="Mesh" type="MeshInstance3D" parent="." unique_id=981495105]
+mesh = ExtResource("5_a3n40")

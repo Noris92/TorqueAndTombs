@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="WeaponResource" format=3]
+
+[ext_resource type="AudioStream" path="res://audio/shoot.tres" id="1_v7lpi"]
+[ext_resource type="PackedScene" path="res://scenes/weapons/AutocannonModel.tscn" id="2_lo2av"]
+[ext_resource type="PackedScene" path="res://scenes/projectiles/Bullet.tscn" id="3_je3nx"]
+[ext_resource type="Script" path="res://scripts/resources/WeaponResource.gd" id="4_evhko"]
+
+[resource]
+script = ExtResource("4_evhko")
+projectile_scene = ExtResource("3_je3nx")
+projectile_lifetime = 0.6
+fire_sound = ExtResource("1_v7lpi")
+model_scene = ExtResource("2_lo2av")

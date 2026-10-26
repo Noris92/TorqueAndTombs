@@ -1,0 +1,37 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://scripts/enemies/RammerEnemy.gd" id="1_n8sfp"]
+[ext_resource type="PackedScene" path="res://scenes/hazards/ScrapPickup.tscn" id="2_1armk"]
+[ext_resource type="PackedScene" path="res://scenes/effects/Explosion.tscn" id="3_0u838"]
+[ext_resource type="AudioStream" path="res://audio/hit.tres" id="4_2p3y3"]
+[ext_resource type="ArrayMesh" path="res://models/rammer.tres" id="5_jr3au"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_rmc2n"]
+size = Vector3(1.8, 1.1, 2.8)
+
+[node name="RammerEnemy" type="CharacterBody3D" unique_id=76026793]
+collision_layer = 4
+collision_mask = 71
+script = ExtResource("1_n8sfp")
+charge_range = 10.0
+max_health = 35.0
+move_speed = 8.0
+scrap_reward = 2
+contact_damage = 14.0
+scrap_pickup_scene = ExtResource("2_1armk")
+death_effect = ExtResource("3_0u838")
+hit_sound = ExtResource("4_2p3y3")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1705961883]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6, 0)
+shape = SubResource("BoxShape3D_rmc2n")
+
+[node name="Visual" type="Node3D" parent="." unique_id=788249951]
+
+[node name="Mesh" type="MeshInstance3D" parent="Visual" unique_id=494543726]
+mesh = ExtResource("5_jr3au")
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="." unique_id=1529792806]
+target_desired_distance = 1.5
+height = 1.5
+radius = 1.0

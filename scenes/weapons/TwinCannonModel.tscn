@@ -1,0 +1,8 @@
+[gd_scene format=3]
+
+[ext_resource type="ArrayMesh" path="res://models/twin_cannon.tres" id="1_c5poa"]
+
+[node name="TwinCannonModel" type="Node3D" unique_id=1282461159]
+
+[node name="Mesh" type="MeshInstance3D" parent="." unique_id=1512535951]
+mesh = ExtResource("1_c5poa")

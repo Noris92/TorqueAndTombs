@@ -1,0 +1,15 @@
+[gd_resource type="ArrayMesh" format=4]
+
+[ext_resource type="Material" path="res://materials/telegraph.tres" id="1_hfwae"]
+
+[resource]
+_surfaces = [{
+"aabb": AABB(-0.08, -0.02, -1, 0.16, 0.04, 1),
+"attribute_data": PackedByteArray("/Pz8//z8/P/8/Pz//Pz8//z8/P/8/Pz/////////////////////////////////////////////////////////////////////////////////////////////////9PT0//T09P/09PT/9PT0//T09P/09PT/////////////////////////////////"),
+"format": 34359738383,
+"material": ExtResource("1_hfwae"),
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 36,
+"vertex_data": PackedByteArray("CtejvQrXo7wAAIC/CtejvQrXozwAAIC/CtejvQrXozwAAAAACtejvQrXo7wAAIC/CtejvQrXozwAAAAACtejvQrXo7wAAAAACtejPQrXo7wAAIC/CtejPQrXozwAAAAACtejPQrXozwAAIC/CtejPQrXo7wAAIC/CtejPQrXo7wAAAAACtejPQrXozwAAAAACtejvQrXo7wAAIC/CtejPQrXo7wAAAAACtejPQrXo7wAAIC/CtejvQrXo7wAAIC/CtejvQrXo7wAAAAACtejPQrXo7wAAAAACtejvQrXozwAAIC/CtejPQrXozwAAIC/CtejPQrXozwAAAAACtejvQrXozwAAIC/CtejPQrXozwAAAAACtejvQrXozwAAAAACtejvQrXo7wAAIC/CtejPQrXo7wAAIC/CtejPQrXozwAAIC/CtejvQrXo7wAAIC/CtejPQrXozwAAIC/CtejvQrXozwAAIC/CtejvQrXo7wAAAAACtejPQrXozwAAAAACtejPQrXo7wAAAAACtejvQrXo7wAAAAACtejvQrXozwAAAAACtejPQrXozwAAAAAAAD/f/9//78AAP9//3//vwAA/3//f/+/AAD/f/9//78AAP9//3//vwAA/3//f/+/////f/9//7////9//3//v////3//f/+/////f/9//7////9//3//v////3//f/+//38AAAAA/7//fwAAAAD/v/9/AAAAAP+//38AAAAA/7//fwAAAAD/v/9/AAAAAP+//3///wAA/7//f///AAD/v/9///8AAP+//3///wAA/7//f///AAD/v/9///8AAP+///////9/AID//////38AgP//////fwCA//////9/AID//////38AgP//////fwCA/3//f/9/AID/f/9//38AgP9//3//fwCA/3//f/9/AID/f/9//38AgP9//3//fwCA")
+}]

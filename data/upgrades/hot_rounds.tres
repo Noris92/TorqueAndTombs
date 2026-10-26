@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="UpgradeResource" format=3]
+
+[ext_resource type="Texture2D" path="res://data/upgrade_icons/hot_rounds.tres" id="1_76hln"]
+[ext_resource type="Script" path="res://scripts/resources/UpgradeResource.gd" id="2_paghi"]
+
+[resource]
+script = ExtResource("2_paghi")
+id = "hot_rounds"
+display_name = "Hot Rounds"
+description = "Every weapon hits harder."
+icon = ExtResource("1_76hln")
+category = 0
+target_stat = "weapon_damage_multiplier"
+modifier_value = 0.15
+base_cost = 85
+max_tier = 5

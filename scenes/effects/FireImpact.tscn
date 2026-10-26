@@ -1,0 +1,59 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://scripts/effects/OneShotEffect.gd" id="1_3en3q"]
+[ext_resource type="Material" path="res://materials/particle_glow.tres" id="2_d2una"]
+[ext_resource type="Script" path="res://scripts/effects/LightFade.gd" id="3_ptnyx"]
+
+[sub_resource type="Gradient" id="Gradient_k0vc7"]
+colors = PackedColorArray(1, 0.75, 0.2, 1, 0.9, 0.15, 0.02, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_ve1yb"]
+gradient = SubResource("Gradient_k0vc7")
+
+[sub_resource type="Curve" id="Curve_varah"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.05), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_dai6p"]
+curve = SubResource("Curve_varah")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ipuae"]
+emission_shape = 1
+emission_sphere_radius = 0.2
+direction = Vector3(0, 1, 0)
+spread = 180.0
+initial_velocity_min = 1.5
+initial_velocity_max = 4.0
+gravity = Vector3(0, 2, 0)
+damping_min = 3.0
+damping_max = 3.0
+scale_min = 0.6
+scale_max = 1.2
+scale_curve = SubResource("CurveTexture_dai6p")
+color_ramp = SubResource("GradientTexture1D_ve1yb")
+
+[sub_resource type="BoxMesh" id="BoxMesh_1vox0"]
+material = ExtResource("2_d2una")
+size = Vector3(0.3, 0.3, 0.3)
+
+[node name="FireImpact" type="Node3D" unique_id=1126119395]
+script = ExtResource("1_3en3q")
+lifetime = 0.8
+
+[node name="Flames" type="GPUParticles3D" parent="." unique_id=1992257854]
+emitting = false
+amount = 14
+lifetime = 0.45
+one_shot = true
+explosiveness = 1.0
+visibility_aabb = AABB(-10, -10, -10, 20, 20, 20)
+process_material = SubResource("ParticleProcessMaterial_ipuae")
+draw_pass_1 = SubResource("BoxMesh_1vox0")
+
+[node name="Flash" type="OmniLight3D" parent="." unique_id=1364415944]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+light_color = Color(1, 0.5, 0.15, 1)
+light_energy = 2.0
+omni_attenuation = 1.2
+script = ExtResource("3_ptnyx")
+duration = 0.3

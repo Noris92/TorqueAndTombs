@@ -1,0 +1,8 @@
+[gd_scene format=3]
+
+[ext_resource type="ArrayMesh" path="res://models/spoiler.tres" id="1_qrj1k"]
+
+[node name="Spoiler" type="Node3D" unique_id=2060039216]
+
+[node name="Mesh" type="MeshInstance3D" parent="." unique_id=2130809107]
+mesh = ExtResource("1_qrj1k")

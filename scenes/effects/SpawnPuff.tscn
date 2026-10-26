@@ -1,0 +1,48 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://scripts/effects/OneShotEffect.gd" id="1_6dj3w"]
+[ext_resource type="Material" path="res://materials/particle_glow.tres" id="2_51wci"]
+
+[sub_resource type="Gradient" id="Gradient_2pbfj"]
+colors = PackedColorArray(0.7, 0.35, 1, 1, 0.2, 0.1, 0.3, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_qgxf2"]
+gradient = SubResource("Gradient_2pbfj")
+
+[sub_resource type="Curve" id="Curve_8vm6l"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.05), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_1uerj"]
+curve = SubResource("Curve_8vm6l")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_pv1c0"]
+emission_shape = 1
+emission_sphere_radius = 1.0
+direction = Vector3(0, 1, 0)
+spread = 180.0
+initial_velocity_min = 1.0
+initial_velocity_max = 2.5
+gravity = Vector3(0, 3, 0)
+scale_min = 0.6
+scale_max = 1.2
+scale_curve = SubResource("CurveTexture_1uerj")
+color_ramp = SubResource("GradientTexture1D_qgxf2")
+
+[sub_resource type="BoxMesh" id="BoxMesh_1cewb"]
+material = ExtResource("2_51wci")
+size = Vector3(0.4, 0.4, 0.4)
+
+[node name="SpawnPuff" type="Node3D" unique_id=319302647]
+script = ExtResource("1_6dj3w")
+lifetime = 1.2
+
+[node name="Smoke" type="GPUParticles3D" parent="." unique_id=1716769389]
+emitting = false
+amount = 24
+lifetime = 0.9
+one_shot = true
+explosiveness = 0.9
+visibility_aabb = AABB(-10, -10, -10, 20, 20, 20)
+process_material = SubResource("ParticleProcessMaterial_pv1c0")
+draw_pass_1 = SubResource("BoxMesh_1cewb")

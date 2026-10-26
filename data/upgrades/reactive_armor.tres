@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="UpgradeResource" format=3]
+
+[ext_resource type="Texture2D" path="res://data/upgrade_icons/reactive_armor.tres" id="1_ul42o"]
+[ext_resource type="Script" path="res://scripts/resources/UpgradeResource.gd" id="2_mcgnt"]
+[ext_resource type="PackedScene" path="res://scenes/upgrades/RamPlow.tscn" id="3_vt1bv"]
+
+[resource]
+script = ExtResource("2_mcgnt")
+id = "reactive_armor"
+display_name = "Bone Ram Plow"
+description = "Spiked plow. Shrugs off damage."
+icon = ExtResource("1_ul42o")
+category = 2
+target_stat = "armor"
+modifier_value = 15.0
+base_cost = 90
+max_tier = 4
+visual_scene = ExtResource("3_vt1bv")
+visual_attach_point = "FrontMount"

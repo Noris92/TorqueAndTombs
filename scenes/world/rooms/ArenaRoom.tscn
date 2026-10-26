@@ -1,0 +1,302 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://scripts/world/ArenaRoom.gd" id="1_wc5s2"]
+[ext_resource type="PackedScene" path="res://scenes/hazards/LootCrate.tscn" id="2_5rnqb"]
+[ext_resource type="PackedScene" path="res://scenes/hazards/ScrapPickup.tscn" id="3_uj0t7"]
+[ext_resource type="ArrayMesh" path="res://models/rooms/ArenaRoom.tres" id="4_exy38"]
+[ext_resource type="ArrayMesh" path="res://models/blocker.tres" id="5_v6gjf"]
+[ext_resource type="PackedScene" path="res://scenes/world/props/Brazier.tscn" id="6_lkk6g"]
+[ext_resource type="Script" path="res://scripts/enemies/WaveSpawner.gd" id="7_7a0y0"]
+[ext_resource type="PackedScene" path="res://scenes/effects/SpawnPuff.tscn" id="8_2aep7"]
+[ext_resource type="Script" path="res://scripts/resources/WaveEnemyOption.gd" id="9_ba31f"]
+[ext_resource type="PackedScene" path="res://scenes/enemies/RammerEnemy.tscn" id="10_q4ydr"]
+[ext_resource type="PackedScene" path="res://scenes/enemies/FireCaster.tscn" id="11_j16t6"]
+[ext_resource type="PackedScene" path="res://scenes/enemies/MortarBuggy.tscn" id="12_s1ag3"]
+[ext_resource type="PackedScene" path="res://scenes/enemies/Juggernaut.tscn" id="13_eyhv7"]
+[ext_resource type="PackedScene" path="res://scenes/enemies/PyreArchon.tscn" id="14_kf7j5"]
+[ext_resource type="PackedScene" path="res://scenes/enemies/SiegeCrawler.tscn" id="15_elg1a"]
+
+[sub_resource type="NavigationMesh" id="NavigationMesh_vusp2"]
+vertices = PackedVector3Array(3.75, 0.5, -25.75, 3, 0.5, -27, -2.75, 0.5, -27, -3.75, 0.5, -25.75, -11.75, 0.5, -14.5, 11.75, 0.5, -14.5, 11.75, 0.5, -15.5, -11.75, 0.5, -15.5, -14, 0.5, -25.75, -14, 0.5, -16.25, -12.5, 0.5, -16.25, 12.5, 0.5, -16.25, 14, 0.5, -16.25, 14, 0.5, -25.75, -25.75, 0.5, -14, -16.25, 0.5, -14, -16.25, 0.5, -15.5, -15.5, 0.5, -16.25, -25.75, 0.5, -25.75, 15.5, 0.5, -16.25, 16.25, 0.5, -15.5, 16.25, 0.5, -14, 26, 0.5, -14, 26, 0.5, -25.75, -12.5, 0.5, -11.75, -14.5, 0.5, -11.75, -14.5, 0.5, 11.75, -12.5, 0.5, 11.75, 11.75, 0.5, 12.5, 12.5, 0.5, 11.75, 12.5, 0.5, -11.75, -11.75, 0.5, 12.5, -11.75, 0.5, 14.5, 11.75, 0.5, 14.5, 11.75, 0.5, -12.5, -11.75, 0.5, -12.5, 14.5, 0.5, 11.75, 14.5, 0.5, -11.75, -14.25, 17.5, -14.25, -14.25, 17.5, -13.75, -13.75, 17.5, -13.75, -13.75, 17.5, -14.25, 13.75, 17.5, -14.25, 13.75, 17.5, -13.75, 14.25, 17.5, -13.75, 14.25, 17.5, -14.25, -27, 0.5, -2.75, -27, 0.5, 3, -25.75, 0.5, 3.75, -25.75, 0.5, -3.75, -15.5, 0.5, -11.75, -15.5, 0.5, 11.75, -25.75, 0.5, 14, -16.25, 0.5, 14, -16.25, 0.5, 12.5, -16.25, 0.5, -12.5, 26, 0.5, 3.75, 27, 0.5, 3, 27, 0.5, -2.75, 26, 0.5, -3.5, 15.5, 0.5, 11.75, 15.5, 0.5, -11.75, 16.25, 0.5, 12.5, 16.25, 0.5, 14, 26, 0.5, 14, 16.25, 0.5, -12.5, -14.25, 17.5, 13.75, -14.25, 17.5, 14.25, -13.75, 17.5, 14.25, -13.75, 17.5, 13.75, 13.75, 17.5, 13.75, 13.75, 17.5, 14.25, 14.25, 17.5, 14.25, 14.25, 17.5, 13.75, -16.25, 0.5, 15.5, -14, 0.5, 26, -14, 0.5, 16.25, -15.5, 0.5, 16.25, -25.75, 0.5, 26, 16.25, 0.5, 15.5, 15.5, 0.5, 16.25, 14, 0.5, 16.25, 14, 0.5, 26, 26, 0.5, 26, -3.5, 0.5, 26, -2.75, 0.5, 27, 3, 0.5, 27, 3.75, 0.5, 26, 11.75, 0.5, 15.5, -11.75, 0.5, 15.5, 12.5, 0.5, 16.25, -12.5, 0.5, 16.25)
+polygons = [PackedInt32Array(1, 0, 2), PackedInt32Array(2, 0, 3), PackedInt32Array(7, 3, 4), PackedInt32Array(4, 3, 0), PackedInt32Array(4, 0, 6), PackedInt32Array(4, 6, 5), PackedInt32Array(10, 9, 8), PackedInt32Array(13, 12, 11), PackedInt32Array(10, 8, 7), PackedInt32Array(7, 8, 3), PackedInt32Array(11, 6, 13), PackedInt32Array(13, 6, 0), PackedInt32Array(16, 15, 14), PackedInt32Array(8, 9, 17), PackedInt32Array(16, 14, 17), PackedInt32Array(17, 14, 18), PackedInt32Array(17, 18, 8), PackedInt32Array(19, 12, 13), PackedInt32Array(22, 21, 20), PackedInt32Array(19, 13, 20), PackedInt32Array(20, 13, 23), PackedInt32Array(20, 23, 22), PackedInt32Array(27, 26, 24), PackedInt32Array(24, 26, 25), PackedInt32Array(28, 30, 29), PackedInt32Array(28, 33, 31), PackedInt32Array(31, 33, 32), PackedInt32Array(30, 35, 34), PackedInt32Array(30, 37, 29), PackedInt32Array(29, 37, 36), PackedInt32Array(31, 27, 28), PackedInt32Array(28, 27, 24), PackedInt32Array(28, 24, 35), PackedInt32Array(28, 35, 30), PackedInt32Array(35, 4, 34), PackedInt32Array(34, 4, 5), PackedInt32Array(41, 40, 38), PackedInt32Array(38, 40, 39), PackedInt32Array(45, 44, 42), PackedInt32Array(42, 44, 43), PackedInt32Array(47, 46, 48), PackedInt32Array(48, 46, 49), PackedInt32Array(51, 48, 26), PackedInt32Array(26, 48, 49), PackedInt32Array(26, 49, 50), PackedInt32Array(26, 50, 25), PackedInt32Array(54, 53, 52), PackedInt32Array(14, 15, 55), PackedInt32Array(54, 52, 51), PackedInt32Array(51, 52, 48), PackedInt32Array(55, 50, 14), PackedInt32Array(14, 50, 49), PackedInt32Array(57, 56, 58), PackedInt32Array(58, 56, 59), PackedInt32Array(60, 36, 56), PackedInt32Array(56, 36, 59), PackedInt32Array(59, 36, 61), PackedInt32Array(61, 36, 37), PackedInt32Array(64, 63, 62), PackedInt32Array(65, 21, 22), PackedInt32Array(62, 60, 64), PackedInt32Array(64, 60, 56), PackedInt32Array(65, 22, 61), PackedInt32Array(61, 22, 59), PackedInt32Array(69, 68, 66), PackedInt32Array(66, 68, 67), PackedInt32Array(73, 72, 70), PackedInt32Array(70, 72, 71), PackedInt32Array(52, 53, 74), PackedInt32Array(77, 76, 75), PackedInt32Array(74, 77, 52), PackedInt32Array(52, 77, 78), PackedInt32Array(78, 77, 75), PackedInt32Array(79, 63, 64), PackedInt32Array(82, 81, 80), PackedInt32Array(79, 64, 80), PackedInt32Array(80, 64, 83), PackedInt32Array(80, 83, 82), PackedInt32Array(85, 84, 86), PackedInt32Array(86, 84, 87), PackedInt32Array(88, 87, 33), PackedInt32Array(33, 87, 84), PackedInt32Array(33, 84, 89), PackedInt32Array(33, 89, 32), PackedInt32Array(90, 81, 82), PackedInt32Array(75, 76, 91), PackedInt32Array(90, 82, 88), PackedInt32Array(88, 82, 87), PackedInt32Array(91, 89, 75), PackedInt32Array(75, 89, 84)]
+geometry_parsed_geometry_type = 1
+geometry_collision_mask = 1
+agent_radius = 1.0
+agent_max_climb = 0.5
+agent_max_slope = 30.0
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_1ivno"]
+size = Vector3(56, 1, 56)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_d7180"]
+size = Vector3(24, 16, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_knpoy"]
+size = Vector3(1, 16, 24)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_xjkig"]
+size = Vector3(24, 16, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_1etak"]
+size = Vector3(1, 16, 24)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_43u1d"]
+size = Vector3(24, 14, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_c6ivb"]
+size = Vector3(1, 16, 24)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_apqj2"]
+size = Vector3(24, 14, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_hp52o"]
+size = Vector3(1, 16, 24)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_5vtlq"]
+size = Vector3(2.2, 17, 2.2)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_6x0n4"]
+size = Vector3(2.2, 17, 2.2)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_c15tc"]
+size = Vector3(2.2, 17, 2.2)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_lvjfr"]
+size = Vector3(2.2, 17, 2.2)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_41lyo"]
+size = Vector3(8.2, 16, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_hextw"]
+size = Vector3(8.2, 16, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ym48l"]
+size = Vector3(8.2, 16, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_66thh"]
+size = Vector3(8.2, 16, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_2oeqh"]
+size = Vector3(48, 4, 48)
+
+[sub_resource type="Resource" id="Resource_fhdeg"]
+script = ExtResource("9_ba31f")
+enemy_scene = ExtResource("10_q4ydr")
+weight = 3.0
+
+[sub_resource type="Resource" id="Resource_cpyfy"]
+script = ExtResource("9_ba31f")
+enemy_scene = ExtResource("11_j16t6")
+cost = 3.0
+weight = 2.0
+
+[sub_resource type="Resource" id="Resource_ikvdl"]
+script = ExtResource("9_ba31f")
+enemy_scene = ExtResource("12_s1ag3")
+cost = 5.0
+weight = 1.2
+
+[sub_resource type="Resource" id="Resource_sut6k"]
+script = ExtResource("9_ba31f")
+enemy_scene = ExtResource("13_eyhv7")
+cost = 14.0
+weight = 0.35
+min_depth = 3
+
+[sub_resource type="Resource" id="Resource_hptug"]
+script = ExtResource("9_ba31f")
+enemy_scene = ExtResource("14_kf7j5")
+cost = 16.0
+weight = 0.2
+min_depth = 5
+
+[sub_resource type="Resource" id="Resource_fupj1"]
+script = ExtResource("9_ba31f")
+enemy_scene = ExtResource("15_elg1a")
+cost = 16.0
+weight = 0.2
+min_depth = 5
+
+[node name="ArenaRoom" type="Node3D" unique_id=2044620727]
+script = ExtResource("1_wc5s2")
+reward_crate_scene = ExtResource("2_5rnqb")
+clear_scrap_bonus = 8
+scrap_pickup_scene = ExtResource("3_uj0t7")
+room_footprint = Vector2(56, 56)
+
+[node name="NavigationRegion3D" type="NavigationRegion3D" parent="." unique_id=769349530]
+navigation_mesh = SubResource("NavigationMesh_vusp2")
+
+[node name="Geometry" type="StaticBody3D" parent="NavigationRegion3D" unique_id=709385952]
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/Geometry" unique_id=627571802]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
+shape = SubResource("BoxShape3D_1ivno")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="NavigationRegion3D/Geometry" unique_id=757214432]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16, 8, -27.5)
+shape = SubResource("BoxShape3D_d7180")
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="NavigationRegion3D/Geometry" unique_id=136144886]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -27.5, 8, -16)
+shape = SubResource("BoxShape3D_knpoy")
+
+[node name="CollisionShape3D4" type="CollisionShape3D" parent="NavigationRegion3D/Geometry" unique_id=628395732]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16, 8, -27.5)
+shape = SubResource("BoxShape3D_xjkig")
+
+[node name="CollisionShape3D5" type="CollisionShape3D" parent="NavigationRegion3D/Geometry" unique_id=868888806]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -27.5, 8, 16)
+shape = SubResource("BoxShape3D_1etak")
+
+[node name="CollisionShape3D6" type="CollisionShape3D" parent="NavigationRegion3D/Geometry" unique_id=995828702]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16, 7, 27.5)
+shape = SubResource("BoxShape3D_43u1d")
+
+[node name="CollisionShape3D7" type="CollisionShape3D" parent="NavigationRegion3D/Geometry" unique_id=2069590036]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 27.5, 8, -16)
+shape = SubResource("BoxShape3D_c6ivb")
+
+[node name="CollisionShape3D8" type="CollisionShape3D" parent="NavigationRegion3D/Geometry" unique_id=1786179233]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16, 7, 27.5)
+shape = SubResource("BoxShape3D_apqj2")
+
+[node name="CollisionShape3D9" type="CollisionShape3D" parent="NavigationRegion3D/Geometry" unique_id=1187735569]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 27.5, 8, 16)
+shape = SubResource("BoxShape3D_hp52o")
+
+[node name="CollisionShape3D10" type="CollisionShape3D" parent="NavigationRegion3D/Geometry" unique_id=965970489]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14, 8.5, -14)
+shape = SubResource("BoxShape3D_5vtlq")
+
+[node name="CollisionShape3D11" type="CollisionShape3D" parent="NavigationRegion3D/Geometry" unique_id=2078826396]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14, 8.5, 14)
+shape = SubResource("BoxShape3D_6x0n4")
+
+[node name="CollisionShape3D12" type="CollisionShape3D" parent="NavigationRegion3D/Geometry" unique_id=1107274402]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14, 8.5, -14)
+shape = SubResource("BoxShape3D_c15tc")
+
+[node name="CollisionShape3D13" type="CollisionShape3D" parent="NavigationRegion3D/Geometry" unique_id=97654494]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14, 8.5, 14)
+shape = SubResource("BoxShape3D_lvjfr")
+
+[node name="GeometryMesh" type="MeshInstance3D" parent="NavigationRegion3D" unique_id=2035266275]
+mesh = ExtResource("4_exy38")
+
+[node name="Sockets" type="Node3D" parent="." unique_id=1752333504]
+
+[node name="North" type="Marker3D" parent="Sockets" unique_id=290249934]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -28)
+
+[node name="Blocker" type="StaticBody3D" parent="Sockets/North" unique_id=1456600659]
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Sockets/North/Blocker" unique_id=529706569]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 8, 0.5)
+shape = SubResource("BoxShape3D_41lyo")
+
+[node name="Mesh" type="MeshInstance3D" parent="Sockets/North/Blocker" unique_id=509057727]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.5)
+mesh = ExtResource("5_v6gjf")
+
+[node name="East" type="Marker3D" parent="Sockets" unique_id=1429793843]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 28, 0, 0)
+
+[node name="Blocker" type="StaticBody3D" parent="Sockets/East" unique_id=2073115649]
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Sockets/East/Blocker" unique_id=229978322]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 8, 0.5)
+shape = SubResource("BoxShape3D_hextw")
+
+[node name="Mesh" type="MeshInstance3D" parent="Sockets/East/Blocker" unique_id=524185037]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.5)
+mesh = ExtResource("5_v6gjf")
+
+[node name="South" type="Marker3D" parent="Sockets" unique_id=1670321328]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, 28)
+
+[node name="Blocker" type="StaticBody3D" parent="Sockets/South" unique_id=759812869]
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Sockets/South/Blocker" unique_id=1323460874]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 8, 0.5)
+shape = SubResource("BoxShape3D_ym48l")
+
+[node name="Mesh" type="MeshInstance3D" parent="Sockets/South/Blocker" unique_id=488390930]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.5)
+mesh = ExtResource("5_v6gjf")
+
+[node name="West" type="Marker3D" parent="Sockets" unique_id=1492015562]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -28, 0, 0)
+
+[node name="Blocker" type="StaticBody3D" parent="Sockets/West" unique_id=1835999977]
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Sockets/West/Blocker" unique_id=24533601]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 8, 0.5)
+shape = SubResource("BoxShape3D_66thh")
+
+[node name="Mesh" type="MeshInstance3D" parent="Sockets/West/Blocker" unique_id=992312157]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.5)
+mesh = ExtResource("5_v6gjf")
+
+[node name="EntranceTrigger" type="Area3D" parent="." unique_id=462019050]
+collision_layer = 32
+collision_mask = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="EntranceTrigger" unique_id=1034444853]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+shape = SubResource("BoxShape3D_2oeqh")
+
+[node name="Brazier" type="Node3D" parent="." unique_id=742839782 instance=ExtResource("6_lkk6g")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14, 5.25, -14)
+
+[node name="Brazier2" type="Node3D" parent="." unique_id=1420299375 instance=ExtResource("6_lkk6g")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14, 5.25, 14)
+
+[node name="Brazier3" type="Node3D" parent="." unique_id=879386617 instance=ExtResource("6_lkk6g")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14, 5.25, -14)
+
+[node name="Brazier4" type="Node3D" parent="." unique_id=1359473635 instance=ExtResource("6_lkk6g")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14, 5.25, 14)
+
+[node name="WaveSpawner" type="Node3D" parent="." unique_id=766407391]
+script = ExtResource("7_7a0y0")
+spawn_effect = ExtResource("8_2aep7")
+randomize_waves = true
+enemy_options = Array[ExtResource("9_ba31f")]([SubResource("Resource_fhdeg"), SubResource("Resource_cpyfy"), SubResource("Resource_ikvdl"), SubResource("Resource_sut6k"), SubResource("Resource_hptug"), SubResource("Resource_fupj1")])
+
+[node name="SpawnPoint1" type="Marker3D" parent="WaveSpawner" unique_id=1200549078]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18.108038, 0.6, 7.500595)
+
+[node name="SpawnPoint2" type="Marker3D" parent="WaveSpawner" unique_id=256142959]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.500595, 0.6, 18.108038)
+
+[node name="SpawnPoint3" type="Marker3D" parent="WaveSpawner" unique_id=219404691]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.500595, 0.6, 18.108038)
+
+[node name="SpawnPoint4" type="Marker3D" parent="WaveSpawner" unique_id=840250996]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -18.108038, 0.6, 7.500595)
+
+[node name="SpawnPoint5" type="Marker3D" parent="WaveSpawner" unique_id=282595199]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -18.108038, 0.6, -7.500595)
+
+[node name="SpawnPoint6" type="Marker3D" parent="WaveSpawner" unique_id=1726768885]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.500595, 0.6, -18.108038)
+
+[node name="SpawnPoint7" type="Marker3D" parent="WaveSpawner" unique_id=154891678]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.500595, 0.6, -18.108038)
+
+[node name="SpawnPoint8" type="Marker3D" parent="WaveSpawner" unique_id=138458792]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18.108038, 0.6, -7.500595)
+
+[node name="RewardPoints" type="Node3D" parent="." unique_id=959176543]
+
+[node name="Reward1" type="Marker3D" parent="RewardPoints" unique_id=1716453293]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0.8, 0)
+
+[node name="Reward2" type="Marker3D" parent="RewardPoints" unique_id=1882501692]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0.8, 0)

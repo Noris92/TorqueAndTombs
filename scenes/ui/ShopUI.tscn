@@ -1,0 +1,84 @@
+[gd_scene format=3]
+
+[ext_resource type="Theme" path="res://ui/ui_theme.tres" id="1_5pbih"]
+[ext_resource type="Script" path="res://scripts/ui/ShopUI.gd" id="2_rj07h"]
+[ext_resource type="AudioStream" path="res://audio/purchase.tres" id="3_4y8cl"]
+[ext_resource type="AudioStream" path="res://audio/error.tres" id="4_ofqlf"]
+
+[node name="ShopUI" type="Control" unique_id=1892962962 node_paths=PackedStringArray("tab_container", "scrap_label", "feedback_label", "close_button", "ui_audio_player")]
+layout_mode = 3
+anchors_preset = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = ExtResource("1_5pbih")
+script = ExtResource("2_rj07h")
+tab_container = NodePath("Center/Panel/VBox/Tabs")
+scrap_label = NodePath("Center/Panel/VBox/Header/ScrapLabel")
+feedback_label = NodePath("Center/Panel/VBox/Footer/FeedbackLabel")
+close_button = NodePath("Center/Panel/VBox/Footer/CloseButton")
+ui_audio_player = NodePath("UIAudio")
+purchase_sound = ExtResource("3_4y8cl")
+error_sound = ExtResource("4_ofqlf")
+
+[node name="Dim" type="ColorRect" parent="." unique_id=660204578]
+layout_mode = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color(0, 0, 0, 0.6)
+
+[node name="Center" type="CenterContainer" parent="." unique_id=2093094331]
+layout_mode = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="Panel" type="PanelContainer" parent="Center" unique_id=1409585960]
+custom_minimum_size = Vector2(960, 620)
+layout_mode = 2
+
+[node name="VBox" type="VBoxContainer" parent="Center/Panel" unique_id=1332464979]
+layout_mode = 2
+theme_override_constants/separation = 14
+
+[node name="Header" type="HBoxContainer" parent="Center/Panel/VBox" unique_id=1206002426]
+layout_mode = 2
+
+[node name="Title" type="Label" parent="Center/Panel/VBox/Header" unique_id=1160075214]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(1, 0.65, 0.2, 1)
+theme_override_font_sizes/font_size = 32
+text = "GARAGE SHOP"
+
+[node name="ScrapLabel" type="Label" parent="Center/Panel/VBox/Header" unique_id=2130743281]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.8, 0.3, 1)
+theme_override_font_sizes/font_size = 26
+text = "Scrap: 0"
+
+[node name="Tabs" type="TabContainer" parent="Center/Panel/VBox" unique_id=824678516]
+custom_minimum_size = Vector2(0, 440)
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Footer" type="HBoxContainer" parent="Center/Panel/VBox" unique_id=1335499481]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="FeedbackLabel" type="Label" parent="Center/Panel/VBox/Footer" unique_id=1777136708]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 22
+
+[node name="Hint" type="Label" parent="Center/Panel/VBox/Footer" unique_id=818737560]
+modulate = Color(1, 1, 1, 0.6)
+layout_mode = 2
+theme_override_font_sizes/font_size = 16
+text = "ESC / TAB to close"
+
+[node name="CloseButton" type="Button" parent="Center/Panel/VBox/Footer" unique_id=844669555]
+custom_minimum_size = Vector2(160, 46)
+layout_mode = 2
+text = "Close"
+
+[node name="UIAudio" type="AudioStreamPlayer" parent="." unique_id=1148797745]
+bus = &"SFX"

@@ -1,0 +1,102 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://scripts/world/DungeonGenerator.gd" id="1_6clr0"]
+[ext_resource type="PackedScene" path="res://scenes/world/rooms/StartRoom.tscn" id="2_xf2rg"]
+[ext_resource type="PackedScene" path="res://scenes/world/rooms/MazeRoomA.tscn" id="3_oag60"]
+[ext_resource type="PackedScene" path="res://scenes/world/rooms/MazeRoomB.tscn" id="4_dt33p"]
+[ext_resource type="PackedScene" path="res://scenes/world/rooms/PlatformRoom.tscn" id="5_q11uo"]
+[ext_resource type="PackedScene" path="res://scenes/world/rooms/ArenaRoom.tscn" id="6_g8su0"]
+[ext_resource type="PackedScene" path="res://scenes/world/rooms/TreasureRoom.tscn" id="7_dv1a5"]
+[ext_resource type="PackedScene" path="res://scenes/world/rooms/ExitRoom.tscn" id="8_kk7oe"]
+[ext_resource type="PackedScene" path="res://scenes/world/rooms/ExitRoomArchon.tscn" id="9_2fofo"]
+[ext_resource type="PackedScene" path="res://scenes/world/rooms/ExitRoomSiege.tscn" id="10_vxisi"]
+[ext_resource type="PackedScene" path="res://scenes/world/rooms/gauntlets/GauntletLavaNorth.tscn" id="11_1odql"]
+[ext_resource type="PackedScene" path="res://scenes/world/rooms/gauntlets/GauntletSpikeNorth.tscn" id="12_lscnh"]
+[ext_resource type="PackedScene" path="res://scenes/world/rooms/gauntlets/GauntletLavaSouth.tscn" id="13_gu0kl"]
+[ext_resource type="PackedScene" path="res://scenes/world/rooms/gauntlets/GauntletSpikeSouth.tscn" id="14_6jtlo"]
+[ext_resource type="PackedScene" path="res://scenes/world/rooms/gauntlets/GauntletLavaEast.tscn" id="15_l6ywx"]
+[ext_resource type="PackedScene" path="res://scenes/world/rooms/gauntlets/GauntletSpikeEast.tscn" id="16_3s4cv"]
+[ext_resource type="PackedScene" path="res://scenes/world/rooms/gauntlets/GauntletLavaWest.tscn" id="17_ruwam"]
+[ext_resource type="PackedScene" path="res://scenes/world/rooms/gauntlets/GauntletSpikeWest.tscn" id="18_qp76i"]
+[ext_resource type="PackedScene" path="res://scenes/world/Door.tscn" id="19_mgkt6"]
+[ext_resource type="PackedScene" path="res://scenes/player/PlayerVehicle.tscn" id="20_w2i88"]
+[ext_resource type="Script" path="res://scripts/player/IsometricCamera.gd" id="21_2ccvg"]
+[ext_resource type="PackedScene" path="res://scenes/ui/HUD.tscn" id="22_p15y7"]
+[ext_resource type="Script" path="res://scripts/ui/HUD.gd" id="23_1brfp"]
+[ext_resource type="PackedScene" path="res://scenes/ui/PauseMenu.tscn" id="24_oodck"]
+[ext_resource type="Script" path="res://scripts/ui/PauseMenu.gd" id="25_t3ptn"]
+
+[sub_resource type="Environment" id="Environment_5dg1k"]
+background_mode = 1
+background_color = Color(0.035, 0.028, 0.03, 1)
+ambient_light_source = 2
+ambient_light_color = Color(0.6, 0.48, 0.4, 1)
+ambient_light_energy = 0.5
+tonemap_mode = 2
+ssao_enabled = true
+ssao_intensity = 1.5
+glow_enabled = true
+glow_intensity = 0.8
+glow_bloom = 0.05
+fog_enabled = true
+fog_light_color = Color(0.141, 0.11680001, 0.098000005, 1)
+fog_density = 0.008
+fog_sky_affect = 0.0
+
+[node name="Dungeon" type="Node3D" unique_id=724671622]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1834290336]
+environment = SubResource("Environment_5dg1k")
+
+[node name="Sun" type="DirectionalLight3D" parent="." unique_id=1362176973]
+transform = Transform3D(0.81915206, 0.48642042, -0.3039492, 0, 0.52991927, 0.8480481, 0.57357645, -0.69468033, 0.43408445, 0, 0, 0)
+light_color = Color(1, 0.85, 0.7, 1)
+light_energy = 0.45
+shadow_enabled = true
+directional_shadow_max_distance = 80.0
+
+[node name="DungeonGenerator" type="Node3D" parent="." unique_id=1837005473]
+script = ExtResource("1_6clr0")
+start_room_scene = ExtResource("2_xf2rg")
+maze_room_scenes = Array[PackedScene]([ExtResource("3_oag60"), ExtResource("4_dt33p")])
+platform_room_scenes = Array[PackedScene]([ExtResource("5_q11uo")])
+arena_room_scenes = Array[PackedScene]([ExtResource("6_g8su0")])
+treasure_room_scenes = Array[PackedScene]([ExtResource("7_dv1a5")])
+exit_room_scene = ExtResource("8_kk7oe")
+exit_room_scenes = Array[PackedScene]([ExtResource("8_kk7oe"), ExtResource("9_2fofo"), ExtResource("10_vxisi")])
+gauntlet_north_scenes = Array[PackedScene]([ExtResource("11_1odql"), ExtResource("12_lscnh")])
+gauntlet_south_scenes = Array[PackedScene]([ExtResource("13_gu0kl"), ExtResource("14_6jtlo")])
+gauntlet_east_scenes = Array[PackedScene]([ExtResource("15_l6ywx"), ExtResource("16_3s4cv")])
+gauntlet_west_scenes = Array[PackedScene]([ExtResource("17_ruwam"), ExtResource("18_qp76i")])
+door_scene = ExtResource("19_mgkt6")
+cell_size = 56.0
+branch_length = 1
+treasure_chance = 0.2
+player_scene = ExtResource("20_w2i88")
+
+[node name="IsometricCamera" type="Camera3D" parent="." unique_id=717158855]
+current = true
+fov = 55.0
+script = ExtResource("21_2ccvg")
+
+[node name="HUD" type="CanvasLayer" parent="." unique_id=1091677485 node_paths=PackedStringArray("health_bar", "health_label", "boost_bar", "scrap_label", "speed_label", "message_label", "combo_panel", "combo_label", "combo_detail_label", "combo_bar") instance=ExtResource("22_p15y7")]
+script = ExtResource("23_1brfp")
+health_bar = NodePath("Root/Stats/Rows/HULLRow/Bar")
+health_label = NodePath("Root/Stats/Rows/HULLRow/Value")
+boost_bar = NodePath("Root/Stats/Rows/NITRORow/Bar")
+scrap_label = NodePath("Root/ScrapPanel/ScrapLabel")
+speed_label = NodePath("Root/SpeedLabel")
+message_label = NodePath("Root/MessageLabel")
+combo_panel = NodePath("Root/ComboPanel")
+combo_label = NodePath("Root/ComboPanel/VBox/ComboLabel")
+combo_detail_label = NodePath("Root/ComboPanel/VBox/ComboDetail")
+combo_bar = NodePath("Root/ComboPanel/VBox/ComboBar")
+
+[node name="PauseMenu" type="CanvasLayer" parent="." unique_id=901041888 node_paths=PackedStringArray("panel", "resume_button", "options_button", "abandon_button", "main_menu_button", "options_menu") instance=ExtResource("24_oodck")]
+script = ExtResource("25_t3ptn")
+panel = NodePath("Root")
+resume_button = NodePath("Root/Center/Panel/VBox/ResumeButton")
+options_button = NodePath("Root/Center/Panel/VBox/OptionsButton")
+abandon_button = NodePath("Root/Center/Panel/VBox/AbandonButton")
+main_menu_button = NodePath("Root/Center/Panel/VBox/MainMenuButton")
+options_menu = NodePath("OptionsMenu")

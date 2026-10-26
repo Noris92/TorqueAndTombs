@@ -1,0 +1,75 @@
+[gd_scene format=3]
+
+[ext_resource type="Theme" path="res://ui/ui_theme.tres" id="1_mbfo5"]
+[ext_resource type="Script" path="res://scripts/ui/RunSummary.gd" id="2_bibpt"]
+
+[node name="RunSummary" type="Control" unique_id=1618446919 node_paths=PackedStringArray("title_label", "subtitle_label", "stats_grid", "score_label", "best_label", "continue_button")]
+layout_mode = 3
+anchors_preset = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = ExtResource("1_mbfo5")
+script = ExtResource("2_bibpt")
+title_label = NodePath("Center/Panel/VBox/Title")
+subtitle_label = NodePath("Center/Panel/VBox/Subtitle")
+stats_grid = NodePath("Center/Panel/VBox/Stats")
+score_label = NodePath("Center/Panel/VBox/Score")
+best_label = NodePath("Center/Panel/VBox/Best")
+continue_button = NodePath("Center/Panel/VBox/ContinueButton")
+
+[node name="Dim" type="ColorRect" parent="." unique_id=1930088695]
+layout_mode = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color(0, 0, 0, 0.6)
+
+[node name="Center" type="CenterContainer" parent="." unique_id=683840813]
+layout_mode = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="Panel" type="PanelContainer" parent="Center" unique_id=1037617823]
+custom_minimum_size = Vector2(540, 0)
+layout_mode = 2
+
+[node name="VBox" type="VBoxContainer" parent="Center/Panel" unique_id=1239469608]
+layout_mode = 2
+theme_override_constants/separation = 14
+
+[node name="Title" type="Label" parent="Center/Panel/VBox" unique_id=200644469]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.65, 0.2, 1)
+theme_override_font_sizes/font_size = 42
+text = "RUN COMPLETE"
+horizontal_alignment = 1
+
+[node name="Subtitle" type="Label" parent="Center/Panel/VBox" unique_id=1945859175]
+modulate = Color(1, 1, 1, 0.75)
+layout_mode = 2
+theme_override_font_sizes/font_size = 22
+text = "Depth 1"
+horizontal_alignment = 1
+
+[node name="Stats" type="GridContainer" parent="Center/Panel/VBox" unique_id=864917816]
+layout_mode = 2
+theme_override_constants/h_separation = 40
+theme_override_constants/v_separation = 8
+columns = 2
+
+[node name="Score" type="Label" parent="Center/Panel/VBox" unique_id=754164911]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.65, 0.2, 1)
+theme_override_constants/outline_size = 8
+theme_override_font_sizes/font_size = 40
+text = "SCORE 0"
+horizontal_alignment = 1
+
+[node name="Best" type="Label" parent="Center/Panel/VBox" unique_id=610876212]
+layout_mode = 2
+theme_override_font_sizes/font_size = 22
+horizontal_alignment = 1
+
+[node name="ContinueButton" type="Button" parent="Center/Panel/VBox" unique_id=1431103630]
+custom_minimum_size = Vector2(280, 52)
+layout_mode = 2
+text = "Continue"

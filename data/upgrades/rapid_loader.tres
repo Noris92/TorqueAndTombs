@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="UpgradeResource" format=3]
+
+[ext_resource type="Texture2D" path="res://data/upgrade_icons/rapid_loader.tres" id="1_tvbui"]
+[ext_resource type="Script" path="res://scripts/resources/UpgradeResource.gd" id="2_55k7t"]
+
+[resource]
+script = ExtResource("2_55k7t")
+id = "rapid_loader"
+display_name = "Rapid Loader"
+description = "Weapons fire faster."
+icon = ExtResource("1_tvbui")
+category = 0
+target_stat = "fire_rate_multiplier"
+modifier_value = 0.1
+modifier_mode = 1
+base_cost = 85
+max_tier = 5

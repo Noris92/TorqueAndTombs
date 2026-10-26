@@ -1,0 +1,15 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://scripts/hazards/ScrapPickup.gd" id="1_c11pb"]
+[ext_resource type="AudioStream" path="res://audio/pickup.tres" id="2_vn3bm"]
+[ext_resource type="ArrayMesh" path="res://models/scrap.tres" id="3_en53i"]
+
+[node name="ScrapPickup" type="Node3D" unique_id=1398469332]
+script = ExtResource("1_c11pb")
+pickup_sound = ExtResource("2_vn3bm")
+
+[node name="Visual" type="Node3D" parent="." unique_id=1455772575]
+
+[node name="Mesh" type="MeshInstance3D" parent="Visual" unique_id=1899630041]
+transform = Transform3D(1, 0, 0, 0, 0.42261824, -0.9063078, 0, 0.9063078, 0.42261824, 0, 0, 0)
+mesh = ExtResource("3_en53i")

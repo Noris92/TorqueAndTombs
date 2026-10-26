@@ -1,0 +1,66 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://scripts/projectiles/Bullet.gd" id="1_w8jil"]
+[ext_resource type="PackedScene" path="res://scenes/effects/FireImpact.tscn" id="2_oxqdo"]
+[ext_resource type="ArrayMesh" path="res://models/fireball.tres" id="3_lwsgn"]
+[ext_resource type="Material" path="res://materials/particle_glow.tres" id="4_cs5t2"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_v1f0v"]
+radius = 0.3
+
+[sub_resource type="Gradient" id="Gradient_yh5q3"]
+colors = PackedColorArray(1, 0.6, 0.15, 1, 0.6, 0.1, 0.02, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_icbu3"]
+gradient = SubResource("Gradient_yh5q3")
+
+[sub_resource type="Curve" id="Curve_m0pum"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.05), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_v3w2y"]
+curve = SubResource("Curve_m0pum")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_hgw6h"]
+emission_shape = 1
+emission_sphere_radius = 0.2
+direction = Vector3(0, 1, 0)
+spread = 25.0
+initial_velocity_min = 0.3
+initial_velocity_max = 0.8
+gravity = Vector3(0, 2, 0)
+scale_min = 0.6
+scale_max = 1.2
+scale_curve = SubResource("CurveTexture_v3w2y")
+color_ramp = SubResource("GradientTexture1D_icbu3")
+
+[sub_resource type="BoxMesh" id="BoxMesh_rgra3"]
+material = ExtResource("4_cs5t2")
+size = Vector3(0.25, 0.25, 0.25)
+
+[node name="EnemyFireball" type="Area3D" unique_id=2039026503]
+collision_layer = 16
+collision_mask = 3
+monitorable = false
+script = ExtResource("1_w8jil")
+hit_groups = Array[String](["player"])
+impact_effect = ExtResource("2_oxqdo")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1113274492]
+shape = SubResource("SphereShape3D_v1f0v")
+
+[node name="Mesh" type="MeshInstance3D" parent="." unique_id=427956182]
+mesh = ExtResource("3_lwsgn")
+
+[node name="Trail" type="GPUParticles3D" parent="." unique_id=598047204]
+amount = 20
+lifetime = 0.35
+visibility_aabb = AABB(-10, -10, -10, 20, 20, 20)
+process_material = SubResource("ParticleProcessMaterial_hgw6h")
+draw_pass_1 = SubResource("BoxMesh_rgra3")
+
+[node name="Light" type="OmniLight3D" parent="." unique_id=53816861]
+light_color = Color(1, 0.5, 0.15, 1)
+light_energy = 1.5
+omni_range = 4.0
+omni_attenuation = 1.2

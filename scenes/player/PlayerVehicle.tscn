@@ -1,0 +1,299 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://scripts/player/PlayerVehicle.gd" id="1_tjkl6"]
+[ext_resource type="PackedScene" path="res://scenes/effects/BigExplosion.tscn" id="2_od1wg"]
+[ext_resource type="ArrayMesh" path="res://models/buggy_body.tres" id="3_sdv4m"]
+[ext_resource type="ArrayMesh" path="res://models/wheel.tres" id="4_pqepj"]
+[ext_resource type="Material" path="res://materials/particle.tres" id="5_v54pt"]
+[ext_resource type="Material" path="res://materials/particle_glow.tres" id="6_4n86c"]
+[ext_resource type="Script" path="res://scripts/player/TurretController.gd" id="7_wgtes"]
+[ext_resource type="Resource" path="res://data/weapons/autocannon.tres" id="8_w20uy"]
+[ext_resource type="AudioStream" path="res://audio/shoot.tres" id="9_vo01w"]
+[ext_resource type="Script" path="res://scripts/player/RocketLauncher.gd" id="10_tkl2g"]
+[ext_resource type="Resource" path="res://data/weapons/rocket_pod.tres" id="11_xqcoj"]
+[ext_resource type="ArrayMesh" path="res://models/aim_reticle.tres" id="12_hwl1l"]
+[ext_resource type="AudioStream" path="res://audio/rocket.tres" id="13_jy5hl"]
+[ext_resource type="AudioStream" path="res://audio/engine.tres" id="14_6b7nw"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_bssfi"]
+size = Vector3(1.9, 1, 3.3)
+
+[sub_resource type="Gradient" id="Gradient_w8hpn"]
+colors = PackedColorArray(0.8, 0.75, 0.7, 0.7, 0.5, 0.48, 0.45, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_mav0p"]
+gradient = SubResource("Gradient_w8hpn")
+
+[sub_resource type="Curve" id="Curve_hcaa8"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.05), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_smot3"]
+curve = SubResource("Curve_hcaa8")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ff0jf"]
+emission_shape = 1
+emission_sphere_radius = 0.2
+direction = Vector3(0, 1, 0)
+spread = 40.0
+initial_velocity_min = 0.5
+initial_velocity_max = 1.5
+gravity = Vector3(0, 1.2, 0)
+scale_min = 0.6
+scale_max = 1.2
+scale_curve = SubResource("CurveTexture_smot3")
+color_ramp = SubResource("GradientTexture1D_mav0p")
+
+[sub_resource type="BoxMesh" id="BoxMesh_bpm1f"]
+material = ExtResource("5_v54pt")
+size = Vector3(0.45, 0.45, 0.45)
+
+[sub_resource type="Gradient" id="Gradient_asxq0"]
+colors = PackedColorArray(0.8, 0.75, 0.7, 0.7, 0.5, 0.48, 0.45, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_e3wah"]
+gradient = SubResource("Gradient_asxq0")
+
+[sub_resource type="Curve" id="Curve_6g1wo"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.05), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_w1yls"]
+curve = SubResource("Curve_6g1wo")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_vqmao"]
+emission_shape = 1
+emission_sphere_radius = 0.2
+direction = Vector3(0, 1, 0)
+spread = 40.0
+initial_velocity_min = 0.5
+initial_velocity_max = 1.5
+gravity = Vector3(0, 1.2, 0)
+scale_min = 0.6
+scale_max = 1.2
+scale_curve = SubResource("CurveTexture_w1yls")
+color_ramp = SubResource("GradientTexture1D_e3wah")
+
+[sub_resource type="BoxMesh" id="BoxMesh_iblu0"]
+material = ExtResource("5_v54pt")
+size = Vector3(0.45, 0.45, 0.45)
+
+[sub_resource type="Gradient" id="Gradient_x21n5"]
+colors = PackedColorArray(0.5, 0.9, 1, 1, 1, 0.4, 0.1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_rtnbh"]
+gradient = SubResource("Gradient_x21n5")
+
+[sub_resource type="Curve" id="Curve_yj55i"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.05), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_x3rsq"]
+curve = SubResource("Curve_yj55i")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_4ikx6"]
+emission_shape = 1
+emission_sphere_radius = 0.08
+direction = Vector3(0, 0.4, 1)
+spread = 12.0
+initial_velocity_min = 4.0
+initial_velocity_max = 7.0
+gravity = Vector3(0, 0, 0)
+scale_min = 0.6
+scale_max = 1.2
+scale_curve = SubResource("CurveTexture_x3rsq")
+color_ramp = SubResource("GradientTexture1D_rtnbh")
+
+[sub_resource type="BoxMesh" id="BoxMesh_y8qcc"]
+material = ExtResource("6_4n86c")
+size = Vector3(0.22, 0.22, 0.22)
+
+[sub_resource type="Gradient" id="Gradient_a8352"]
+colors = PackedColorArray(1, 0.85, 0.4, 1, 1, 0.4, 0.1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_wp10n"]
+gradient = SubResource("Gradient_a8352")
+
+[sub_resource type="Curve" id="Curve_ghdvp"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.05), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_0nnl0"]
+curve = SubResource("Curve_ghdvp")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_8n4a1"]
+emission_shape = 1
+emission_sphere_radius = 0.2
+direction = Vector3(0, 0, -1)
+spread = 25.0
+initial_velocity_min = 2.0
+initial_velocity_max = 4.0
+gravity = Vector3(0, 0, 0)
+scale_min = 0.6
+scale_max = 1.2
+scale_curve = SubResource("CurveTexture_0nnl0")
+color_ramp = SubResource("GradientTexture1D_wp10n")
+
+[sub_resource type="BoxMesh" id="BoxMesh_3kkqk"]
+material = ExtResource("6_4n86c")
+size = Vector3(0.18, 0.18, 0.18)
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_dhmlj"]
+radius = 16.0
+
+[node name="PlayerVehicle" type="CharacterBody3D" unique_id=1370571593 node_paths=PackedStringArray("front_wheels", "rear_wheels", "visual_root", "mounts_root", "drift_particles", "boost_particles", "engine_audio")]
+collision_layer = 2
+collision_mask = 5
+script = ExtResource("1_tjkl6")
+death_effect = ExtResource("2_od1wg")
+front_wheels = [NodePath("VisualRoot/WheelFL"), NodePath("VisualRoot/WheelFR")]
+rear_wheels = [NodePath("VisualRoot/WheelRL"), NodePath("VisualRoot/WheelRR")]
+visual_root = NodePath("VisualRoot")
+mounts_root = NodePath("VisualRoot/Mounts")
+drift_particles = [NodePath("VisualRoot/DriftSmokeL"), NodePath("VisualRoot/DriftSmokeR")]
+boost_particles = NodePath("VisualRoot/BoostFlame")
+engine_audio = NodePath("EngineAudio")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1204313989]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+shape = SubResource("BoxShape3D_bssfi")
+
+[node name="VisualRoot" type="Node3D" parent="." unique_id=133577554]
+
+[node name="Body" type="MeshInstance3D" parent="VisualRoot" unique_id=1346861863]
+mesh = ExtResource("3_sdv4m")
+
+[node name="WheelFL" type="Node3D" parent="VisualRoot" unique_id=316349723]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.95, 0.45, -1.05)
+
+[node name="Mesh" type="MeshInstance3D" parent="VisualRoot/WheelFL" unique_id=2112969211]
+mesh = ExtResource("4_pqepj")
+
+[node name="WheelFR" type="Node3D" parent="VisualRoot" unique_id=1714831076]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.95, 0.45, -1.05)
+
+[node name="Mesh" type="MeshInstance3D" parent="VisualRoot/WheelFR" unique_id=1467410706]
+mesh = ExtResource("4_pqepj")
+
+[node name="WheelRL" type="Node3D" parent="VisualRoot" unique_id=1680640719]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.95, 0.45, 1.05)
+
+[node name="Mesh" type="MeshInstance3D" parent="VisualRoot/WheelRL" unique_id=857145702]
+mesh = ExtResource("4_pqepj")
+
+[node name="WheelRR" type="Node3D" parent="VisualRoot" unique_id=998390685]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.95, 0.45, 1.05)
+
+[node name="Mesh" type="MeshInstance3D" parent="VisualRoot/WheelRR" unique_id=1622714648]
+mesh = ExtResource("4_pqepj")
+
+[node name="DriftSmokeL" type="GPUParticles3D" parent="VisualRoot" unique_id=1287958632]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.95, 0.15, 1.1)
+emitting = false
+amount = 40
+lifetime = 0.9
+visibility_aabb = AABB(-10, -10, -10, 20, 20, 20)
+process_material = SubResource("ParticleProcessMaterial_ff0jf")
+draw_pass_1 = SubResource("BoxMesh_bpm1f")
+
+[node name="DriftSmokeR" type="GPUParticles3D" parent="VisualRoot" unique_id=1096086339]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.95, 0.15, 1.1)
+emitting = false
+amount = 40
+lifetime = 0.9
+visibility_aabb = AABB(-10, -10, -10, 20, 20, 20)
+process_material = SubResource("ParticleProcessMaterial_vqmao")
+draw_pass_1 = SubResource("BoxMesh_iblu0")
+
+[node name="BoostFlame" type="GPUParticles3D" parent="VisualRoot" unique_id=1353467023]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.45, 1.95)
+emitting = false
+amount = 36
+lifetime = 0.3
+visibility_aabb = AABB(-10, -10, -10, 20, 20, 20)
+process_material = SubResource("ParticleProcessMaterial_4ikx6")
+draw_pass_1 = SubResource("BoxMesh_y8qcc")
+
+[node name="Mounts" type="Node3D" parent="VisualRoot" unique_id=29746613]
+
+[node name="FrontMount" type="Node3D" parent="VisualRoot/Mounts" unique_id=1542374263]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.62, -1.75)
+
+[node name="SideMounts" type="Node3D" parent="VisualRoot/Mounts" unique_id=860918592]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.82, 0)
+
+[node name="RearMount" type="Node3D" parent="VisualRoot/Mounts" unique_id=1869499523]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 1.6)
+
+[node name="TankMount" type="Node3D" parent="VisualRoot/Mounts" unique_id=1469168366]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.1, 1.3)
+
+[node name="RoofTurret" type="Node3D" parent="VisualRoot" unique_id=178239572 node_paths=PackedStringArray("detection_area", "muzzle", "muzzle_flash", "audio_player")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.88, 0.35)
+script = ExtResource("7_wgtes")
+detection_area = NodePath("DetectionArea")
+weapon = ExtResource("8_w20uy")
+slot_name = "turret"
+muzzle = NodePath("Muzzle")
+muzzle_flash = NodePath("Muzzle/MuzzleFlash")
+audio_player = NodePath("FireSound")
+
+[node name="Muzzle" type="Marker3D" parent="VisualRoot/RoofTurret" unique_id=1825753056]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.3, -1.3)
+
+[node name="MuzzleFlash" type="GPUParticles3D" parent="VisualRoot/RoofTurret/Muzzle" unique_id=1882929420]
+emitting = false
+amount = 6
+lifetime = 0.08
+one_shot = true
+explosiveness = 1.0
+visibility_aabb = AABB(-10, -10, -10, 20, 20, 20)
+local_coords = true
+process_material = SubResource("ParticleProcessMaterial_8n4a1")
+draw_pass_1 = SubResource("BoxMesh_3kkqk")
+
+[node name="DetectionArea" type="Area3D" parent="VisualRoot/RoofTurret" unique_id=1481196882]
+collision_layer = 0
+collision_mask = 4
+monitorable = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="VisualRoot/RoofTurret/DetectionArea" unique_id=1987931255]
+shape = SubResource("SphereShape3D_dhmlj")
+
+[node name="FireSound" type="AudioStreamPlayer3D" parent="VisualRoot/RoofTurret" unique_id=235039771]
+stream = ExtResource("9_vo01w")
+volume_db = -8.0
+unit_size = 12.0
+max_distance = 70.0
+bus = &"SFX"
+
+[node name="RocketLauncher" type="Node3D" parent="VisualRoot" unique_id=1448201869 node_paths=PackedStringArray("muzzle", "audio_player")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.97, -1)
+script = ExtResource("10_tkl2g")
+weapon = ExtResource("11_xqcoj")
+slot_name = "rocket"
+muzzle = NodePath("Muzzle")
+audio_player = NodePath("FireSound")
+
+[node name="Muzzle" type="Marker3D" parent="VisualRoot/RocketLauncher" unique_id=2035824435]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.2, -0.6)
+
+[node name="AimReticle" type="Node3D" parent="VisualRoot/RocketLauncher" unique_id=248038054]
+visible = false
+
+[node name="Mesh" type="MeshInstance3D" parent="VisualRoot/RocketLauncher/AimReticle" unique_id=530531550]
+mesh = ExtResource("12_hwl1l")
+
+[node name="FireSound" type="AudioStreamPlayer3D" parent="VisualRoot/RocketLauncher" unique_id=805519390]
+stream = ExtResource("13_jy5hl")
+volume_db = -3.0
+unit_size = 12.0
+max_distance = 70.0
+bus = &"SFX"
+
+[node name="EngineAudio" type="AudioStreamPlayer3D" parent="." unique_id=1764612663]
+stream = ExtResource("14_6b7nw")
+volume_db = -16.0
+unit_size = 12.0
+max_distance = 70.0
+bus = &"SFX"

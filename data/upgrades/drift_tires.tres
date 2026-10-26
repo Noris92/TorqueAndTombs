@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="UpgradeResource" format=3]
+
+[ext_resource type="Texture2D" path="res://data/upgrade_icons/drift_tires.tres" id="1_kwlwk"]
+[ext_resource type="Script" path="res://scripts/resources/UpgradeResource.gd" id="2_e0l3u"]
+
+[resource]
+script = ExtResource("2_e0l3u")
+id = "drift_tires"
+display_name = "Drift Compound"
+description = "Longer, looser drifts."
+icon = ExtResource("1_kwlwk")
+category = 3
+target_stat = "drift_factor"
+modifier_value = 0.03
+base_cost = 55

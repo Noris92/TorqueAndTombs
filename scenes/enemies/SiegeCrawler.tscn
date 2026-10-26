@@ -1,0 +1,62 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://scripts/enemies/RangedEnemy.gd" id="1_mmvfk"]
+[ext_resource type="PackedScene" path="res://scenes/projectiles/MortarShell.tscn" id="2_ts4gh"]
+[ext_resource type="PackedScene" path="res://scenes/effects/LandingMarker.tscn" id="3_xw8sh"]
+[ext_resource type="PackedScene" path="res://scenes/hazards/ScrapPickup.tscn" id="4_yfnt3"]
+[ext_resource type="PackedScene" path="res://scenes/effects/Explosion.tscn" id="5_8newl"]
+[ext_resource type="AudioStream" path="res://audio/hit.tres" id="6_ndoh8"]
+[ext_resource type="ArrayMesh" path="res://models/mortar_buggy.tres" id="7_rowuo"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_y02fc"]
+size = Vector3(3.5, 2.4, 5.2)
+
+[node name="SiegeCrawler" type="CharacterBody3D" unique_id=717429585 node_paths=PackedStringArray("muzzle")]
+collision_layer = 4
+collision_mask = 71
+script = ExtResource("1_mmvfk")
+projectile_scene = ExtResource("2_ts4gh")
+projectile_damage = 16.0
+preferred_range = 17.0
+min_range = 9.0
+attack_range = 30.0
+fire_cooldown = 2.6
+telegraph_time = 1.1
+muzzle = NodePath("Visual/Muzzle")
+use_mortar_arc = true
+mortar_flight_time = 1.4
+landing_marker_scene = ExtResource("3_xw8sh")
+shells_per_volley = 5
+mortar_scatter_radius = 5.0
+max_health = 250.0
+armor = 4.0
+move_speed = 4.5
+scrap_reward = 20
+scrap_pickup_scene = ExtResource("4_yfnt3")
+death_effect = ExtResource("5_8newl")
+hit_sound = ExtResource("6_ndoh8")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=809435890]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2, 0)
+shape = SubResource("BoxShape3D_y02fc")
+
+[node name="Visual" type="Node3D" parent="." unique_id=1115070404]
+transform = Transform3D(1.9, 0, 0, 0, 1.9, 0, 0, 0, 1.9, 0, 0, 0)
+
+[node name="Mesh" type="MeshInstance3D" parent="Visual" unique_id=196828798]
+mesh = ExtResource("7_rowuo")
+
+[node name="Muzzle" type="Marker3D" parent="Visual" unique_id=1861793416]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.2, -1.1)
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="." unique_id=208089827]
+target_desired_distance = 1.5
+height = 1.5
+radius = 1.0
+
+[node name="Light" type="OmniLight3D" parent="." unique_id=939340184]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.5, 0)
+light_color = Color(0.7, 0.3, 1, 1)
+light_energy = 3.0
+omni_range = 10.0
+omni_attenuation = 1.2

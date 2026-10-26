@@ -1,0 +1,82 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://scripts/ui/PauseMenu.gd" id="1_5twic"]
+[ext_resource type="Theme" path="res://ui/ui_theme.tres" id="2_v5pi0"]
+[ext_resource type="PackedScene" path="res://scenes/ui/OptionsMenu.tscn" id="3_cctyv"]
+[ext_resource type="Script" path="res://scripts/ui/OptionsMenu.gd" id="4_csaq8"]
+
+[node name="PauseMenu" type="CanvasLayer" unique_id=901041888 node_paths=PackedStringArray("panel", "resume_button", "options_button", "abandon_button", "main_menu_button", "options_menu")]
+script = ExtResource("1_5twic")
+panel = NodePath("Root")
+resume_button = NodePath("Root/Center/Panel/VBox/ResumeButton")
+options_button = NodePath("Root/Center/Panel/VBox/OptionsButton")
+abandon_button = NodePath("Root/Center/Panel/VBox/AbandonButton")
+main_menu_button = NodePath("Root/Center/Panel/VBox/MainMenuButton")
+options_menu = NodePath("OptionsMenu")
+
+[node name="Root" type="Control" parent="." unique_id=931337987]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = ExtResource("2_v5pi0")
+
+[node name="Dim" type="ColorRect" parent="Root" unique_id=1123036809]
+layout_mode = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color(0, 0, 0, 0.6)
+
+[node name="Center" type="CenterContainer" parent="Root" unique_id=945855732]
+layout_mode = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="Panel" type="PanelContainer" parent="Root/Center" unique_id=49941265]
+custom_minimum_size = Vector2(360, 0)
+layout_mode = 2
+
+[node name="VBox" type="VBoxContainer" parent="Root/Center/Panel" unique_id=2069833574]
+layout_mode = 2
+theme_override_constants/separation = 14
+
+[node name="Title" type="Label" parent="Root/Center/Panel/VBox" unique_id=1260673456]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.65, 0.2, 1)
+theme_override_font_sizes/font_size = 36
+text = "PAUSED"
+horizontal_alignment = 1
+
+[node name="ResumeButton" type="Button" parent="Root/Center/Panel/VBox" unique_id=1648735649]
+custom_minimum_size = Vector2(280, 52)
+layout_mode = 2
+text = "Resume"
+
+[node name="OptionsButton" type="Button" parent="Root/Center/Panel/VBox" unique_id=637327118]
+custom_minimum_size = Vector2(280, 52)
+layout_mode = 2
+text = "Options"
+
+[node name="AbandonButton" type="Button" parent="Root/Center/Panel/VBox" unique_id=1015446470]
+custom_minimum_size = Vector2(280, 52)
+layout_mode = 2
+text = "Abandon Run"
+
+[node name="MainMenuButton" type="Button" parent="Root/Center/Panel/VBox" unique_id=1762854114]
+custom_minimum_size = Vector2(280, 52)
+layout_mode = 2
+text = "Main Menu"
+
+[node name="OptionsMenu" type="Control" parent="." unique_id=2012531128 node_paths=PackedStringArray("master_slider", "music_slider", "sfx_slider", "fullscreen_toggle", "vsync_toggle", "back_button") instance=ExtResource("3_cctyv")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = ExtResource("2_v5pi0")
+script = ExtResource("4_csaq8")
+master_slider = NodePath("Center/Panel/VBox/Grid/MasterSlider")
+music_slider = NodePath("Center/Panel/VBox/Grid/MusicSlider")
+sfx_slider = NodePath("Center/Panel/VBox/Grid/SFXSlider")
+fullscreen_toggle = NodePath("Center/Panel/VBox/Fullscreen")
+vsync_toggle = NodePath("Center/Panel/VBox/VSync")
+back_button = NodePath("Center/Panel/VBox/BackButton")

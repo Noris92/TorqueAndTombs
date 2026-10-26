@@ -1,0 +1,209 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://scripts/ui/HUD.gd" id="1_atyv1"]
+[ext_resource type="Theme" path="res://ui/ui_theme.tres" id="2_6ll6g"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ig75s"]
+content_margin_left = 0.0
+content_margin_top = 0.0
+content_margin_right = 0.0
+content_margin_bottom = 0.0
+bg_color = Color(0.9, 0.2, 0.15, 1)
+border_color = Color(0, 0, 0, 0)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4ed8p"]
+content_margin_left = 0.0
+content_margin_top = 0.0
+content_margin_right = 0.0
+content_margin_bottom = 0.0
+bg_color = Color(0.3, 0.85, 1, 1)
+border_color = Color(0, 0, 0, 0)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rnyu1"]
+content_margin_left = 0.0
+content_margin_top = 0.0
+content_margin_right = 0.0
+content_margin_bottom = 0.0
+bg_color = Color(1, 0.8, 0.25, 1)
+border_color = Color(0, 0, 0, 0)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+
+[node name="HUD" type="CanvasLayer" unique_id=1091677485 node_paths=PackedStringArray("health_bar", "health_label", "boost_bar", "scrap_label", "speed_label", "message_label", "combo_panel", "combo_label", "combo_detail_label", "combo_bar")]
+script = ExtResource("1_atyv1")
+health_bar = NodePath("Root/Stats/Rows/HULLRow/Bar")
+health_label = NodePath("Root/Stats/Rows/HULLRow/Value")
+boost_bar = NodePath("Root/Stats/Rows/NITRORow/Bar")
+scrap_label = NodePath("Root/ScrapPanel/ScrapLabel")
+speed_label = NodePath("Root/SpeedLabel")
+message_label = NodePath("Root/MessageLabel")
+combo_panel = NodePath("Root/ComboPanel")
+combo_label = NodePath("Root/ComboPanel/VBox/ComboLabel")
+combo_detail_label = NodePath("Root/ComboPanel/VBox/ComboDetail")
+combo_bar = NodePath("Root/ComboPanel/VBox/ComboBar")
+
+[node name="Root" type="Control" parent="." unique_id=1522541670]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+theme = ExtResource("2_6ll6g")
+
+[node name="Stats" type="PanelContainer" parent="Root" unique_id=1475122622]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 16.0
+offset_right = 420.0
+offset_bottom = 110.0
+mouse_filter = 2
+
+[node name="Rows" type="VBoxContainer" parent="Root/Stats" unique_id=1134049781]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="HULLRow" type="HBoxContainer" parent="Root/Stats/Rows" unique_id=401515839]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/separation = 10
+
+[node name="Name" type="Label" parent="Root/Stats/Rows/HULLRow" unique_id=1454484273]
+custom_minimum_size = Vector2(70, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 18
+text = "HULL"
+
+[node name="Bar" type="ProgressBar" parent="Root/Stats/Rows/HULLRow" unique_id=441343855]
+custom_minimum_size = Vector2(220, 22)
+layout_mode = 2
+size_flags_vertical = 4
+mouse_filter = 2
+theme_override_styles/fill = SubResource("StyleBoxFlat_ig75s")
+value = 100.0
+show_percentage = false
+
+[node name="Value" type="Label" parent="Root/Stats/Rows/HULLRow" unique_id=286531059]
+layout_mode = 2
+theme_override_font_sizes/font_size = 18
+text = "100 / 100"
+
+[node name="NITRORow" type="HBoxContainer" parent="Root/Stats/Rows" unique_id=1412633901]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/separation = 10
+
+[node name="Name" type="Label" parent="Root/Stats/Rows/NITRORow" unique_id=1547425595]
+custom_minimum_size = Vector2(70, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 18
+text = "NITRO"
+
+[node name="Bar" type="ProgressBar" parent="Root/Stats/Rows/NITRORow" unique_id=1142122049]
+custom_minimum_size = Vector2(220, 22)
+layout_mode = 2
+size_flags_vertical = 4
+mouse_filter = 2
+theme_override_styles/fill = SubResource("StyleBoxFlat_4ed8p")
+value = 100.0
+show_percentage = false
+
+[node name="ScrapPanel" type="PanelContainer" parent="Root" unique_id=975910291]
+layout_mode = 0
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -240.0
+offset_top = 16.0
+offset_right = -16.0
+offset_bottom = 70.0
+mouse_filter = 2
+
+[node name="ScrapLabel" type="Label" parent="Root/ScrapPanel" unique_id=108387237]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.8, 0.3, 1)
+theme_override_font_sizes/font_size = 26
+text = "Scrap: 0"
+horizontal_alignment = 1
+
+[node name="ComboPanel" type="PanelContainer" parent="Root" unique_id=2000294332]
+visible = false
+layout_mode = 0
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -380.0
+offset_top = 100.0
+offset_right = -16.0
+offset_bottom = 214.0
+mouse_filter = 2
+
+[node name="VBox" type="VBoxContainer" parent="Root/ComboPanel" unique_id=2053639379]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="ComboLabel" type="Label" parent="Root/ComboPanel/VBox" unique_id=2006029049]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.62, 0.15, 1)
+theme_override_constants/outline_size = 8
+theme_override_font_sizes/font_size = 36
+text = "x1 COMBO"
+horizontal_alignment = 2
+
+[node name="ComboDetail" type="Label" parent="Root/ComboPanel/VBox" unique_id=855699525]
+layout_mode = 2
+theme_override_font_sizes/font_size = 18
+horizontal_alignment = 2
+
+[node name="ComboBar" type="ProgressBar" parent="Root/ComboPanel/VBox" unique_id=1565638068]
+custom_minimum_size = Vector2(0, 8)
+layout_mode = 2
+mouse_filter = 2
+theme_override_styles/fill = SubResource("StyleBoxFlat_rnyu1")
+show_percentage = false
+
+[node name="SpeedLabel" type="Label" parent="Root" unique_id=1819360843]
+layout_mode = 0
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -260.0
+offset_top = -64.0
+offset_right = -24.0
+offset_bottom = -20.0
+theme_override_font_sizes/font_size = 28
+text = "0 km/h"
+horizontal_alignment = 2
+
+[node name="MessageLabel" type="Label" parent="Root" unique_id=283766578]
+layout_mode = 0
+anchor_right = 1.0
+offset_left = 160.0
+offset_top = 120.0
+offset_right = -160.0
+offset_bottom = 230.0
+theme_override_colors/font_color = Color(1, 0.92, 0.75, 1)
+theme_override_constants/outline_size = 10
+theme_override_font_sizes/font_size = 32
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="Hint" type="Label" parent="Root" unique_id=1790058493]
+modulate = Color(1, 1, 1, 0.65)
+layout_mode = 0
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 20.0
+offset_top = -44.0
+offset_right = 1000.0
+offset_bottom = -16.0
+theme_override_font_sizes/font_size = 16
+text = "W/S drive  |  A/D steer  |  SPACE drift  |  SHIFT nitro  |  E rocket  |  ESC pause"

@@ -1,0 +1,90 @@
+[gd_scene format=3]
+
+[ext_resource type="Theme" path="res://ui/ui_theme.tres" id="1_85c7g"]
+[ext_resource type="Script" path="res://scripts/ui/OptionsMenu.gd" id="2_uxfc2"]
+
+[node name="OptionsMenu" type="Control" unique_id=2012531128 node_paths=PackedStringArray("master_slider", "music_slider", "sfx_slider", "fullscreen_toggle", "vsync_toggle", "back_button")]
+layout_mode = 3
+anchors_preset = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = ExtResource("1_85c7g")
+script = ExtResource("2_uxfc2")
+master_slider = NodePath("Center/Panel/VBox/Grid/MasterSlider")
+music_slider = NodePath("Center/Panel/VBox/Grid/MusicSlider")
+sfx_slider = NodePath("Center/Panel/VBox/Grid/SFXSlider")
+fullscreen_toggle = NodePath("Center/Panel/VBox/Fullscreen")
+vsync_toggle = NodePath("Center/Panel/VBox/VSync")
+back_button = NodePath("Center/Panel/VBox/BackButton")
+
+[node name="Dim" type="ColorRect" parent="." unique_id=2117019292]
+layout_mode = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color(0, 0, 0, 0.6)
+
+[node name="Center" type="CenterContainer" parent="." unique_id=2129109101]
+layout_mode = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="Panel" type="PanelContainer" parent="Center" unique_id=425143682]
+custom_minimum_size = Vector2(480, 0)
+layout_mode = 2
+
+[node name="VBox" type="VBoxContainer" parent="Center/Panel" unique_id=1041298874]
+layout_mode = 2
+theme_override_constants/separation = 14
+
+[node name="Title" type="Label" parent="Center/Panel/VBox" unique_id=300156908]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.65, 0.2, 1)
+theme_override_font_sizes/font_size = 32
+text = "OPTIONS"
+horizontal_alignment = 1
+
+[node name="Grid" type="GridContainer" parent="Center/Panel/VBox" unique_id=108380505]
+layout_mode = 2
+theme_override_constants/h_separation = 20
+theme_override_constants/v_separation = 12
+columns = 2
+
+[node name="MasterLabel" type="Label" parent="Center/Panel/VBox/Grid" unique_id=1967962025]
+layout_mode = 2
+text = "Master"
+
+[node name="MasterSlider" type="HSlider" parent="Center/Panel/VBox/Grid" unique_id=1016414449]
+custom_minimum_size = Vector2(260, 28)
+layout_mode = 2
+size_flags_vertical = 4
+
+[node name="MusicLabel" type="Label" parent="Center/Panel/VBox/Grid" unique_id=774257629]
+layout_mode = 2
+text = "Music"
+
+[node name="MusicSlider" type="HSlider" parent="Center/Panel/VBox/Grid" unique_id=1479449063]
+custom_minimum_size = Vector2(260, 28)
+layout_mode = 2
+size_flags_vertical = 4
+
+[node name="SFXLabel" type="Label" parent="Center/Panel/VBox/Grid" unique_id=930036252]
+layout_mode = 2
+text = "SFX"
+
+[node name="SFXSlider" type="HSlider" parent="Center/Panel/VBox/Grid" unique_id=2019258349]
+custom_minimum_size = Vector2(260, 28)
+layout_mode = 2
+size_flags_vertical = 4
+
+[node name="Fullscreen" type="CheckButton" parent="Center/Panel/VBox" unique_id=440055231]
+layout_mode = 2
+text = "Fullscreen"
+
+[node name="VSync" type="CheckButton" parent="Center/Panel/VBox" unique_id=1868969536]
+layout_mode = 2
+text = "V-Sync"
+
+[node name="BackButton" type="Button" parent="Center/Panel/VBox" unique_id=632581181]
+custom_minimum_size = Vector2(280, 52)
+layout_mode = 2
+text = "Back"

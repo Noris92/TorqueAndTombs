@@ -1,0 +1,15 @@
+[gd_scene format=3]
+
+[ext_resource type="ArrayMesh" path="res://models/ramp.tres" id="1_vwjii"]
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_pvv5c"]
+points = PackedVector3Array(-4, 0, -2.25, 4, 0, -2.25, 4, 0, 2.25, -4, 0, 2.25, -4, 1.2, -2.25, 4, 1.2, -2.25)
+
+[node name="Ramp" type="StaticBody3D" unique_id=464896748]
+collision_mask = 0
+
+[node name="Mesh" type="MeshInstance3D" parent="." unique_id=130394899]
+mesh = ExtResource("1_vwjii")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1634912103]
+shape = SubResource("ConvexPolygonShape3D_pvv5c")

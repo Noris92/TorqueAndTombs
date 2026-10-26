@@ -1,0 +1,17 @@
+[gd_scene format=3]
+
+[ext_resource type="ArrayMesh" path="res://models/torch.tres" id="1_3tqjq"]
+[ext_resource type="Script" path="res://scripts/effects/Flicker.gd" id="2_lybsn"]
+
+[node name="Torch" type="Node3D" unique_id=157471216]
+
+[node name="Mesh" type="MeshInstance3D" parent="." unique_id=2088360210]
+mesh = ExtResource("1_3tqjq")
+
+[node name="Light" type="OmniLight3D" parent="." unique_id=1918929605]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6, 0.45)
+light_color = Color(1, 0.62, 0.3, 1)
+light_energy = 2.2
+omni_range = 11.0
+omni_attenuation = 1.2
+script = ExtResource("2_lybsn")

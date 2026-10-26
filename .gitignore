@@ -1,0 +1,10 @@
+# Godot 4 cache / imported data (rebuilt automatically when the project is opened)
+.godot/
+/android/
+
+# Exported builds
+*.exe
+*.pck
+
+# Leftovers from setting up the project
+torque_tombs_scripts.zip

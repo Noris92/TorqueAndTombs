@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="UpgradeResource" format=3]
+
+[ext_resource type="Texture2D" path="res://data/upgrade_icons/scrap_vacuum.tres" id="1_tbuo4"]
+[ext_resource type="Script" path="res://scripts/resources/UpgradeResource.gd" id="2_uf3al"]
+
+[resource]
+script = ExtResource("2_uf3al")
+id = "scrap_vacuum"
+display_name = "Scrap Vacuum"
+description = "Every piece of scrap in the room you're in flies straight to you."
+icon = ExtResource("1_tbuo4")
+category = 4
+target_stat = "none"
+modifier_value = 0.0
+base_cost = 130
+max_tier = 1
+unlock_flag = "scrap_vacuum"
+unlock_label = "Auto-collect scrap in your room"

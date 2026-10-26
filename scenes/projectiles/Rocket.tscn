@@ -1,0 +1,71 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://scripts/projectiles/Rocket.gd" id="1_oneqk"]
+[ext_resource type="PackedScene" path="res://scenes/effects/Explosion.tscn" id="2_b1f0r"]
+[ext_resource type="ArrayMesh" path="res://models/rocket.tres" id="3_kaf2a"]
+[ext_resource type="Material" path="res://materials/particle_glow.tres" id="4_cslqs"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_18xr0"]
+radius = 0.25
+
+[sub_resource type="Gradient" id="Gradient_bwul3"]
+colors = PackedColorArray(1, 0.8, 0.4, 1, 0.4, 0.4, 0.4, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_pg1fy"]
+gradient = SubResource("Gradient_bwul3")
+
+[sub_resource type="Curve" id="Curve_2nqth"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.05), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_a65qt"]
+curve = SubResource("Curve_2nqth")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_8isaq"]
+emission_shape = 1
+emission_sphere_radius = 0.2
+direction = Vector3(0, 0, 1)
+spread = 10.0
+initial_velocity_min = 1.0
+initial_velocity_max = 2.0
+gravity = Vector3(0, 1, 0)
+scale_min = 0.6
+scale_max = 1.2
+scale_curve = SubResource("CurveTexture_a65qt")
+color_ramp = SubResource("GradientTexture1D_pg1fy")
+
+[sub_resource type="BoxMesh" id="BoxMesh_4tb7y"]
+material = ExtResource("4_cslqs")
+size = Vector3(0.22, 0.22, 0.22)
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_hn6wy"]
+radius = 3.5
+
+[node name="Rocket" type="Area3D" unique_id=1012943053]
+collision_layer = 8
+collision_mask = 69
+monitorable = false
+script = ExtResource("1_oneqk")
+impact_effect = ExtResource("2_b1f0r")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1672640847]
+shape = SubResource("SphereShape3D_18xr0")
+
+[node name="Mesh" type="MeshInstance3D" parent="." unique_id=672587680]
+mesh = ExtResource("3_kaf2a")
+
+[node name="Trail" type="GPUParticles3D" parent="." unique_id=339063368]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.35)
+amount = 24
+lifetime = 0.4
+visibility_aabb = AABB(-10, -10, -10, 20, 20, 20)
+process_material = SubResource("ParticleProcessMaterial_8isaq")
+draw_pass_1 = SubResource("BoxMesh_4tb7y")
+
+[node name="SplashArea" type="Area3D" parent="." unique_id=913322175]
+collision_layer = 0
+collision_mask = 68
+monitorable = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SplashArea" unique_id=637487626]
+shape = SubResource("SphereShape3D_hn6wy")

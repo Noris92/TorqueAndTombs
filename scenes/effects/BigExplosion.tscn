@@ -1,0 +1,131 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://scripts/effects/OneShotEffect.gd" id="1_6cuip"]
+[ext_resource type="AudioStream" path="res://audio/explosion.tres" id="2_n65ch"]
+[ext_resource type="Material" path="res://materials/particle_glow.tres" id="3_6p335"]
+[ext_resource type="Material" path="res://materials/particle.tres" id="4_ww0in"]
+[ext_resource type="Material" path="res://materials/particle_solid.tres" id="5_fnmbo"]
+[ext_resource type="Script" path="res://scripts/effects/LightFade.gd" id="6_556om"]
+
+[sub_resource type="Gradient" id="Gradient_13sae"]
+colors = PackedColorArray(1, 0.85, 0.3, 1, 0.9, 0.2, 0.02, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_js8ja"]
+gradient = SubResource("Gradient_13sae")
+
+[sub_resource type="Curve" id="Curve_snajs"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.05), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_7ur7p"]
+curve = SubResource("Curve_snajs")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_aapiq"]
+emission_shape = 1
+emission_sphere_radius = 0.72
+direction = Vector3(0, 1, 0)
+spread = 180.0
+initial_velocity_min = 5.4
+initial_velocity_max = 14.4
+gravity = Vector3(0, 1, 0)
+damping_min = 6.0
+damping_max = 6.0
+scale_min = 0.6
+scale_max = 1.2
+scale_curve = SubResource("CurveTexture_7ur7p")
+color_ramp = SubResource("GradientTexture1D_js8ja")
+
+[sub_resource type="BoxMesh" id="BoxMesh_kbll3"]
+material = ExtResource("3_6p335")
+size = Vector3(0.81, 0.81, 0.81)
+
+[sub_resource type="Gradient" id="Gradient_0f407"]
+colors = PackedColorArray(0.25, 0.22, 0.2, 0.85, 0.15, 0.15, 0.15, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_y7xk2"]
+gradient = SubResource("Gradient_0f407")
+
+[sub_resource type="Curve" id="Curve_7ffe8"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.05), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_xhqel"]
+curve = SubResource("Curve_7ffe8")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ypvf5"]
+emission_shape = 1
+emission_sphere_radius = 0.9
+direction = Vector3(0, 1, 0)
+spread = 180.0
+initial_velocity_min = 1.0
+initial_velocity_max = 5.4
+gravity = Vector3(0, 2.5, 0)
+damping_min = 2.0
+damping_max = 2.0
+scale_min = 0.6
+scale_max = 1.2
+scale_curve = SubResource("CurveTexture_xhqel")
+color_ramp = SubResource("GradientTexture1D_y7xk2")
+
+[sub_resource type="BoxMesh" id="BoxMesh_1or5v"]
+material = ExtResource("4_ww0in")
+size = Vector3(1.26, 1.26, 1.26)
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_arbo8"]
+emission_shape = 1
+emission_sphere_radius = 0.2
+direction = Vector3(0, 1, 0)
+spread = 70.0
+initial_velocity_min = 4.0
+initial_velocity_max = 16.2
+gravity = Vector3(0, -18, 0)
+scale_min = 0.6
+scale_max = 1.2
+color = Color(0.16, 0.16, 0.18, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_yr86k"]
+material = ExtResource("5_fnmbo")
+size = Vector3(0.324, 0.324, 0.324)
+
+[node name="BigExplosion" type="Node3D" unique_id=2031157472]
+script = ExtResource("1_6cuip")
+lifetime = 1.6
+sound = ExtResource("2_n65ch")
+
+[node name="Fire" type="GPUParticles3D" parent="." unique_id=1189014663]
+emitting = false
+amount = 50
+lifetime = 0.55
+one_shot = true
+explosiveness = 0.95
+visibility_aabb = AABB(-10, -10, -10, 20, 20, 20)
+process_material = SubResource("ParticleProcessMaterial_aapiq")
+draw_pass_1 = SubResource("BoxMesh_kbll3")
+
+[node name="Smoke" type="GPUParticles3D" parent="." unique_id=1872042018]
+emitting = false
+amount = 28
+lifetime = 1.3
+one_shot = true
+explosiveness = 0.9
+visibility_aabb = AABB(-10, -10, -10, 20, 20, 20)
+process_material = SubResource("ParticleProcessMaterial_ypvf5")
+draw_pass_1 = SubResource("BoxMesh_1or5v")
+
+[node name="Debris" type="GPUParticles3D" parent="." unique_id=505253500]
+emitting = false
+amount = 18
+one_shot = true
+explosiveness = 1.0
+visibility_aabb = AABB(-10, -10, -10, 20, 20, 20)
+process_material = SubResource("ParticleProcessMaterial_arbo8")
+draw_pass_1 = SubResource("BoxMesh_yr86k")
+
+[node name="Flash" type="OmniLight3D" parent="." unique_id=640536893]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+light_color = Color(1, 0.55, 0.2, 1)
+light_energy = 9.0
+omni_range = 16.2
+omni_attenuation = 1.2
+script = ExtResource("6_556om")
+duration = 0.45

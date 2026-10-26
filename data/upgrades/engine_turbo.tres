@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="UpgradeResource" format=3]
+
+[ext_resource type="Texture2D" path="res://data/upgrade_icons/engine_turbo.tres" id="1_xq8d6"]
+[ext_resource type="Script" path="res://scripts/resources/UpgradeResource.gd" id="2_rms1d"]
+[ext_resource type="PackedScene" path="res://scenes/upgrades/Spoiler.tscn" id="3_7v3f4"]
+
+[resource]
+script = ExtResource("2_rms1d")
+id = "engine_turbo"
+display_name = "Turbo Charger"
+description = "Bigger turbo, higher top speed."
+icon = ExtResource("1_xq8d6")
+modifier_value = 2.5
+base_cost = 70
+max_tier = 5
+visual_scene = ExtResource("3_7v3f4")
+visual_attach_point = "RearMount"

@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="UpgradeResource" format=3]
+
+[ext_resource type="Texture2D" path="res://data/upgrade_icons/scrap_magnet.tres" id="1_j4it5"]
+[ext_resource type="Script" path="res://scripts/resources/UpgradeResource.gd" id="2_7eq1i"]
+
+[resource]
+script = ExtResource("2_7eq1i")
+id = "scrap_magnet"
+display_name = "Scrap Magnet"
+description = "Scrap flies to you from farther away."
+icon = ExtResource("1_j4it5")
+category = 4
+target_stat = "magnet_range"
+modifier_value = 12.0
+max_tier = 2

@@ -1,0 +1,62 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://scripts/enemies/RangedEnemy.gd" id="1_g3l6n"]
+[ext_resource type="PackedScene" path="res://scenes/projectiles/EnemyFireball.tscn" id="2_y5xxu"]
+[ext_resource type="PackedScene" path="res://scenes/hazards/ScrapPickup.tscn" id="3_npiga"]
+[ext_resource type="PackedScene" path="res://scenes/effects/Explosion.tscn" id="4_03fia"]
+[ext_resource type="AudioStream" path="res://audio/hit.tres" id="5_pmud3"]
+[ext_resource type="ArrayMesh" path="res://models/caster.tres" id="6_lyb0h"]
+[ext_resource type="ArrayMesh" path="res://models/telegraph_line.tres" id="7_bnlam"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_f8nrr"]
+radius = 0.6
+height = 2.2
+
+[node name="FireCaster" type="CharacterBody3D" unique_id=1914930080 node_paths=PackedStringArray("muzzle", "telegraph_pivot")]
+collision_layer = 4
+collision_mask = 71
+script = ExtResource("1_g3l6n")
+projectile_scene = ExtResource("2_y5xxu")
+projectile_speed = 16.0
+preferred_range = 12.0
+min_range = 6.0
+attack_range = 17.0
+fire_cooldown = 2.4
+muzzle = NodePath("Visual/Muzzle")
+telegraph_pivot = NodePath("Telegraph")
+max_health = 28.0
+move_speed = 5.0
+scrap_reward = 3
+scrap_pickup_scene = ExtResource("3_npiga")
+death_effect = ExtResource("4_03fia")
+hit_sound = ExtResource("5_pmud3")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1520618891]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.1, 0)
+shape = SubResource("CapsuleShape3D_f8nrr")
+
+[node name="Visual" type="Node3D" parent="." unique_id=258720160]
+
+[node name="Mesh" type="MeshInstance3D" parent="Visual" unique_id=404052782]
+mesh = ExtResource("6_lyb0h")
+
+[node name="Muzzle" type="Marker3D" parent="Visual" unique_id=1651442015]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.55, 2.25, -0.45)
+
+[node name="Light" type="OmniLight3D" parent="Visual" unique_id=1716482188]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.55, 2.3, -0.25)
+light_color = Color(1, 0.5, 0.15, 1)
+light_energy = 1.2
+omni_range = 4.0
+omni_attenuation = 1.2
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="." unique_id=654790154]
+target_desired_distance = 1.5
+height = 1.5
+radius = 1.0
+
+[node name="Telegraph" type="Node3D" parent="." unique_id=546323787]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2, 0)
+
+[node name="Line" type="MeshInstance3D" parent="Telegraph" unique_id=725228023]
+mesh = ExtResource("7_bnlam")

@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="UpgradeResource" format=3]
+
+[ext_resource type="Texture2D" path="res://data/upgrade_icons/twin_cannon_unlock.tres" id="1_lg2jk"]
+[ext_resource type="Script" path="res://scripts/resources/UpgradeResource.gd" id="2_wmniy"]
+[ext_resource type="Resource" path="res://data/weapons/twin_cannon.tres" id="3_x4aug"]
+
+[resource]
+script = ExtResource("2_wmniy")
+id = "twin_cannon_unlock"
+display_name = "Twin Cannon"
+description = "Swap the roof gun for a twin-barrel cannon."
+icon = ExtResource("1_lg2jk")
+category = 0
+target_stat = "none"
+modifier_value = 0.0
+base_cost = 180
+max_tier = 1
+weapon_unlock = ExtResource("3_x4aug")

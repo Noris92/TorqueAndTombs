@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="UpgradeResource" format=3]
+
+[ext_resource type="Texture2D" path="res://data/upgrade_icons/armor_plating.tres" id="1_c0ppr"]
+[ext_resource type="Script" path="res://scripts/resources/UpgradeResource.gd" id="2_818gl"]
+[ext_resource type="PackedScene" path="res://scenes/upgrades/ArmorPlates.tscn" id="3_pmfip"]
+
+[resource]
+script = ExtResource("2_818gl")
+id = "armor_plating"
+display_name = "Armor Plating"
+description = "More hull points."
+icon = ExtResource("1_c0ppr")
+category = 2
+target_stat = "max_health"
+modifier_value = 25.0
+base_cost = 75
+max_tier = 5
+visual_scene = ExtResource("3_pmfip")
+visual_attach_point = "SideMounts"

@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="WeaponResource" format=3]
+
+[ext_resource type="AudioStream" path="res://audio/rocket.tres" id="1_3ij8o"]
+[ext_resource type="PackedScene" path="res://scenes/weapons/RocketPodModel.tscn" id="2_1wvq5"]
+[ext_resource type="PackedScene" path="res://scenes/projectiles/Rocket.tscn" id="3_cdgo5"]
+[ext_resource type="Script" path="res://scripts/resources/WeaponResource.gd" id="4_33poe"]
+
+[resource]
+script = ExtResource("4_33poe")
+weapon_name = "Rocket Pod"
+projectile_scene = ExtResource("3_cdgo5")
+damage = 40.0
+fire_rate = 0.9
+projectile_speed = 30.0
+projectile_lifetime = 1.4
+spread_degrees = 0.0
+splash_radius = 3.5
+fire_sound = ExtResource("1_3ij8o")
+model_scene = ExtResource("2_1wvq5")

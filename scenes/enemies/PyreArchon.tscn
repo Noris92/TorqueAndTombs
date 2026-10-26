@@ -1,0 +1,105 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://scripts/enemies/RangedEnemy.gd" id="1_leuo7"]
+[ext_resource type="PackedScene" path="res://scenes/projectiles/EnemyFireball.tscn" id="2_2nade"]
+[ext_resource type="PackedScene" path="res://scenes/hazards/ScrapPickup.tscn" id="3_i1tov"]
+[ext_resource type="PackedScene" path="res://scenes/effects/Explosion.tscn" id="4_mdde5"]
+[ext_resource type="AudioStream" path="res://audio/hit.tres" id="5_dqoru"]
+[ext_resource type="ArrayMesh" path="res://models/caster.tres" id="6_1re7t"]
+[ext_resource type="Material" path="res://materials/particle_glow.tres" id="7_w72ov"]
+[ext_resource type="ArrayMesh" path="res://models/telegraph_line.tres" id="8_23nk6"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_1c3hj"]
+radius = 1.2
+height = 4.4
+
+[sub_resource type="Gradient" id="Gradient_km3ot"]
+colors = PackedColorArray(1, 0.6, 0.15, 1, 0.7, 0.1, 0.02, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_6bdl7"]
+gradient = SubResource("Gradient_km3ot")
+
+[sub_resource type="Curve" id="Curve_pofkm"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.05), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_wchdd"]
+curve = SubResource("Curve_pofkm")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_lnf7u"]
+emission_shape = 1
+emission_sphere_radius = 0.6
+direction = Vector3(0, 1, 0)
+spread = 25.0
+initial_velocity_min = 0.5
+initial_velocity_max = 1.5
+gravity = Vector3(0, 2, 0)
+scale_min = 0.6
+scale_max = 1.2
+scale_curve = SubResource("CurveTexture_wchdd")
+color_ramp = SubResource("GradientTexture1D_6bdl7")
+
+[sub_resource type="BoxMesh" id="BoxMesh_3m4n3"]
+material = ExtResource("7_w72ov")
+size = Vector3(0.25, 0.25, 0.25)
+
+[node name="PyreArchon" type="CharacterBody3D" unique_id=1848774441 node_paths=PackedStringArray("muzzle", "telegraph_pivot")]
+collision_layer = 4
+collision_mask = 71
+script = ExtResource("1_leuo7")
+projectile_scene = ExtResource("2_2nade")
+projectile_damage = 14.0
+attack_range = 24.0
+fire_cooldown = 1.7
+telegraph_time = 0.7
+muzzle = NodePath("Visual/Muzzle")
+telegraph_pivot = NodePath("Telegraph")
+projectiles_per_volley = 5
+volley_spread_degrees = 55.0
+max_health = 230.0
+armor = 3.0
+move_speed = 4.5
+scrap_reward = 20
+scrap_pickup_scene = ExtResource("3_i1tov")
+death_effect = ExtResource("4_mdde5")
+hit_sound = ExtResource("5_dqoru")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1749125002]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.2, 0)
+shape = SubResource("CapsuleShape3D_1c3hj")
+
+[node name="Visual" type="Node3D" parent="." unique_id=23547845]
+transform = Transform3D(2.1, 0, 0, 0, 2.1, 0, 0, 0, 2.1, 0, 0, 0)
+
+[node name="Mesh" type="MeshInstance3D" parent="Visual" unique_id=280301503]
+mesh = ExtResource("6_1re7t")
+
+[node name="Muzzle" type="Marker3D" parent="Visual" unique_id=1913040876]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.55, 2.25, -0.45)
+
+[node name="Flames" type="GPUParticles3D" parent="Visual" unique_id=927485829]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.3, 0)
+amount = 30
+lifetime = 0.9
+visibility_aabb = AABB(-10, -10, -10, 20, 20, 20)
+process_material = SubResource("ParticleProcessMaterial_lnf7u")
+draw_pass_1 = SubResource("BoxMesh_3m4n3")
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="." unique_id=1773648532]
+target_desired_distance = 1.5
+height = 1.5
+radius = 1.0
+
+[node name="Telegraph" type="Node3D" parent="." unique_id=804221864]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.4, 0)
+
+[node name="Line" type="MeshInstance3D" parent="Telegraph" unique_id=131737846]
+transform = Transform3D(3, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+mesh = ExtResource("8_23nk6")
+
+[node name="Light" type="OmniLight3D" parent="." unique_id=2024925728]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.2, 4.8, -0.5)
+light_color = Color(1, 0.45, 0.1, 1)
+light_energy = 3.5
+omni_range = 12.0
+omni_attenuation = 1.2

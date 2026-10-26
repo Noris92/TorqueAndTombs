@@ -1,0 +1,39 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://scripts/hazards/LootCrate.gd" id="1_n2in5"]
+[ext_resource type="PackedScene" path="res://scenes/hazards/ScrapPickup.tscn" id="2_2fekd"]
+[ext_resource type="PackedScene" path="res://scenes/effects/CrateBreak.tscn" id="3_htpr6"]
+[ext_resource type="AudioStream" path="res://audio/crate.tres" id="4_28mid"]
+[ext_resource type="AudioStream" path="res://audio/hit.tres" id="5_wkmri"]
+[ext_resource type="ArrayMesh" path="res://models/crate.tres" id="6_v7347"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_28snl"]
+size = Vector3(1.4, 1.4, 1.4)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_70qsl"]
+size = Vector3(1.7, 1.7, 1.7)
+
+[node name="LootCrate" type="RigidBody3D" unique_id=1920114567]
+collision_layer = 64
+collision_mask = 69
+mass = 12.0
+script = ExtResource("1_n2in5")
+scrap_value = 3
+scrap_pickup_scene = ExtResource("2_2fekd")
+break_effect = ExtResource("3_htpr6")
+break_sound = ExtResource("4_28mid")
+hit_sound = ExtResource("5_wkmri")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=193790973]
+shape = SubResource("BoxShape3D_28snl")
+
+[node name="TouchArea" type="Area3D" parent="." unique_id=740882983]
+collision_layer = 0
+collision_mask = 2
+monitorable = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="TouchArea" unique_id=1817812498]
+shape = SubResource("BoxShape3D_70qsl")
+
+[node name="Mesh" type="MeshInstance3D" parent="." unique_id=525801637]
+mesh = ExtResource("6_v7347")

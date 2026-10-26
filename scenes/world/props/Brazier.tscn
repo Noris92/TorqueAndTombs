@@ -1,0 +1,56 @@
+[gd_scene format=3]
+
+[ext_resource type="ArrayMesh" path="res://models/brazier.tres" id="1_llcwa"]
+[ext_resource type="Script" path="res://scripts/effects/Flicker.gd" id="2_7us61"]
+[ext_resource type="Material" path="res://materials/particle_glow.tres" id="3_wvdbl"]
+
+[sub_resource type="Gradient" id="Gradient_x0i0m"]
+colors = PackedColorArray(1, 0.7, 0.2, 1, 1, 0.2, 0, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_pk8ow"]
+gradient = SubResource("Gradient_x0i0m")
+
+[sub_resource type="Curve" id="Curve_61wq3"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.05), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_mxo7k"]
+curve = SubResource("Curve_61wq3")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_trrn6"]
+emission_shape = 1
+emission_sphere_radius = 0.3
+direction = Vector3(0, 1, 0)
+spread = 20.0
+initial_velocity_min = 0.5
+initial_velocity_max = 1.5
+gravity = Vector3(0, 1, 0)
+scale_min = 0.6
+scale_max = 1.2
+scale_curve = SubResource("CurveTexture_mxo7k")
+color_ramp = SubResource("GradientTexture1D_pk8ow")
+
+[sub_resource type="BoxMesh" id="BoxMesh_d6w5w"]
+material = ExtResource("3_wvdbl")
+size = Vector3(0.08, 0.08, 0.08)
+
+[node name="Brazier" type="Node3D" unique_id=742839782]
+
+[node name="Mesh" type="MeshInstance3D" parent="." unique_id=1063156257]
+mesh = ExtResource("1_llcwa")
+
+[node name="Light" type="OmniLight3D" parent="." unique_id=1914465678]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.9, 0)
+light_color = Color(1, 0.55, 0.25, 1)
+light_energy = 2.8
+omni_range = 13.0
+omni_attenuation = 1.2
+script = ExtResource("2_7us61")
+
+[node name="Embers" type="GPUParticles3D" parent="." unique_id=1656914573]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.4, 0)
+amount = 10
+lifetime = 1.2
+visibility_aabb = AABB(-10, -10, -10, 20, 20, 20)
+process_material = SubResource("ParticleProcessMaterial_trrn6")
+draw_pass_1 = SubResource("BoxMesh_d6w5w")

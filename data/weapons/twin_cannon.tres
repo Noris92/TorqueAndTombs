@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="WeaponResource" format=3]
+
+[ext_resource type="AudioStream" path="res://audio/shoot.tres" id="1_ava6l"]
+[ext_resource type="PackedScene" path="res://scenes/weapons/TwinCannonModel.tscn" id="2_w48w4"]
+[ext_resource type="PackedScene" path="res://scenes/projectiles/Bullet.tscn" id="3_hhkg2"]
+[ext_resource type="Script" path="res://scripts/resources/WeaponResource.gd" id="4_8kks3"]
+
+[resource]
+script = ExtResource("4_8kks3")
+weapon_name = "Twin Cannon"
+projectile_scene = ExtResource("3_hhkg2")
+damage = 7.0
+fire_rate = 9.0
+projectile_speed = 50.0
+projectile_lifetime = 0.6
+projectiles_per_shot = 2
+spread_degrees = 4.0
+detection_range = 18.0
+turn_speed = 12.0
+fire_sound = ExtResource("1_ava6l")
+model_scene = ExtResource("2_w48w4")
