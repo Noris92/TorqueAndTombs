@@ -31,7 +31,12 @@ jobs:
       - name: Set up export templates
         run: |
           mkdir -v -p ~/.local/share/godot/export_templates/
-          mv /root/.local/share/godot/export_templates/${GODOT_VERSION}.stable ~/.local/share/godot/export_templates/${GODOT_VERSION}.stable
+          SRC=$(ls -d /root/.local/share/godot/export_templates/*/ 2>/dev/null | head -n 1)
+          if [ -z "$SRC" ]; then
+            SRC=$(ls -d /root/.local/share/godot/templates/*/ 2>/dev/null | head -n 1)
+          fi
+          echo "Using templates from: $SRC"
+          cp -r "$SRC" ~/.local/share/godot/export_templates/$(basename "$SRC")
 
       - name: Import project
         run: godot --headless --import || true
